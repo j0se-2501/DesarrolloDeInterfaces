@@ -1,4 +1,4 @@
-package juego;
+package ejercicios;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class Principal {
+public class AdivinarNumero {
 
 	static JFrame frame;
 	static JPanel panel;
@@ -40,7 +40,7 @@ public class Principal {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Principal window = new Principal();
+					AdivinarNumero window = new AdivinarNumero();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,7 +52,7 @@ public class Principal {
 		
 		
 	
-	public Principal() {
+	public AdivinarNumero() {
 		initialize();
 	}
 	
@@ -80,6 +80,7 @@ public class Principal {
 		inputUsuario.setBounds(202,60,30,30);
 		inputUsuario.setVisible(false);
 		inputUsuario.requestFocusInWindow(null);
+		inputUsuario.requestFocus();
 		panel.add(inputUsuario);
 		vidasString="Vidas: "+vidas;
 		vidasPantalla = new JLabel(vidasString);
@@ -93,7 +94,6 @@ public class Principal {
 		boton2 = new JButton("Reiniciar");
 		boton2.setBounds(155,100,120,30);
 		boton2.setVisible(false);
-		boton2.setText("Reiniciar");
 		panel.add(boton2);
 		
 		//creamos numero random
