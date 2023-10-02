@@ -56,6 +56,7 @@ public class BotonesYTecladoInteractivos {
 		frame.add(panel);
 		pantalla = new JTextField();
 		pantalla.setBounds(0, 0, 250, 70);
+		pantalla.requestFocusInWindow(); //con esto se puede escribir directamente en el jtextfield
 		panel.add(pantalla);
 		boton1 = new JButton("Pulsa o teclea 1");
 		boton1.setBounds(0, 70, 250, 70);
