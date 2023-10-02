@@ -1,6 +1,10 @@
 package ejercicios;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -65,6 +69,66 @@ public class BotonesYTecladoInteractivos {
 		botonLimpiar = new JButton("Limpiar display");
 		botonLimpiar.setBounds(0, 280, 250, 70);
 		panel.add(botonLimpiar);
+		//listener del boton de enviar numero
+		
+				boton1.addActionListener(new ActionListener() {
+		            public void actionPerformed(ActionEvent e) {
+		            	pantalla.setText(pantalla.getText()+"1");
+		            }
+		            
+		        });
+				
+				//listener del boton reiniciar
+				
+				boton2.addActionListener(new ActionListener() {
+		            public void actionPerformed(ActionEvent e) {
+		            	pantalla.setText(pantalla.getText()+"2");
+
+		            }
+		            
+		        });
+				
+				//listener de la tecla intro para validar el intento
+				
+				boton3.addActionListener(new ActionListener() {
+		            public void actionPerformed(ActionEvent e) {
+		            	pantalla.setText(pantalla.getText()+"3");
+
+		            }
+		            
+		        });
+				
+				botonLimpiar.addActionListener(new ActionListener() {
+		            public void actionPerformed(ActionEvent e) {
+		            	pantalla.setText("");
+
+		            }
+		            
+		        });
+				
+				pantalla.addKeyListener(new KeyListener() {
+					
+					
+					@Override
+					public void keyTyped(KeyEvent e) {
+						char c = e.getKeyChar();
+		                if (c != '1' && c != '2' && c != '3') {
+		                    e.consume(); // he probado a hacerlo con el getKeyCode, pero no lograba hacerlo funcionar con esta misma logica
+		                    //tanto internet como companneros de clase sugerian hacerlo con getkeycode
+		                }
+					}
+
+					@Override
+					public void keyPressed(KeyEvent e) {
+						
+					}
+
+					@Override
+					public void keyReleased(KeyEvent e) {
+						
+						
+					}
+				});
 		
 	}
 
