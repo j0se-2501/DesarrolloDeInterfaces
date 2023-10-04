@@ -343,11 +343,14 @@ public class Calculadora {
 
 	}
 	
+	
+	
 	public static double evaluarOperacion(String operacionString) {
         Stack<Double> numeros = new Stack<>();
         Stack<Character> operadores = new Stack<>();
 
         for (int i = 0; i < operacionString.length(); i++) {
+        	
             char caracter = operacionString.charAt(i);
 
             if (Character.isDigit(caracter) || caracter == '.') {
