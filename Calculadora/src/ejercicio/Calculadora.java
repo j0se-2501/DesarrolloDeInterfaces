@@ -77,7 +77,7 @@ public class Calculadora {
 		panel = new JPanel();
 		panel.setLayout(null);
 		frame.add(panel);
-		pantalla = new JTextField("0");
+		pantalla = new JTextField("");
 		pantalla.setBounds(0, 0, 250, 70);
 		pantalla.requestFocusInWindow(); //con esto se puede escribir directamente en el jtextfield
 		panel.add(pantalla);
