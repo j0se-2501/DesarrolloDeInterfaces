@@ -10,45 +10,28 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Ventana1 {
+public class VentanaRick {
 
-	private JFrame frame;
-	private JPanel panel;
-	private ImageIcon gifRick;
-	private JLabel gifRickLabel;
-	
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Ventana1 window = new Ventana1();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	protected JFrame frame;
+	protected JPanel panel;
+	protected ImageIcon gifRick;
+	protected JLabel gifRickLabel;
 
 	/**
 	 * Create the application.
 	 */
-	public Ventana1() {
+	public VentanaRick() {
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	protected void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 500, 400);
+		frame.setBounds(700, 300, 500, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("(~‾▽‾)~♪♬");
+		frame.setTitle("Considérate Rickrolleado");
 		panel = new JPanel();
 		panel.setLayout(null);
 		frame.add(panel);

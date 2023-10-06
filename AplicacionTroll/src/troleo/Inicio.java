@@ -11,33 +11,14 @@ import javax.swing.JPanel;
 import java.awt.Font;
 import java.awt.Color;
 
-public class Inicio {
+public class Inicio extends VentanaNipah {
 
-	private JFrame frame;
-	private JPanel panel;
-	private ImageIcon pngTroll;
-	private JLabel pngTrollLabel;
-	private JButton boton;
+	protected JFrame frame;
+	protected JPanel panel;
+	protected ImageIcon pngTroll;
+	protected JLabel pngTrollLabel;
+	protected JButton boton;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Inicio window = new Inicio();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
 	public Inicio() {
 		initialize();
 	}
@@ -45,13 +26,14 @@ public class Inicio {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	protected void initialize() {
 		
 		frame = new JFrame();
-		frame.setBounds(730, 350, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(725, 350, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setTitle("Not sussy app 100% real I swear ( ͡° ͜ʖ ͡°)");
+		frame.addWindowListener(null);
 		panel = new JPanel();
 		panel.setLayout(null);
 		frame.getContentPane().add(panel);
@@ -65,6 +47,7 @@ public class Inicio {
 		boton.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
 		boton.setBounds(170, 73, 100, 36);
 		panel.add(boton);
+		
 		
 		
 	}
