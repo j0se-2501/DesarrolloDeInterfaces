@@ -2,6 +2,7 @@ package troleo;
 
 import java.awt.EventQueue;
 import java.io.File;
+import java.util.Random;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -16,38 +17,42 @@ public class VentanaNipah {
 	protected JPanel panel;
 	protected ImageIcon gifNipah;
 	protected JLabel gifNipahLabel;
+	protected Random random = new Random();
+	protected Clip clip;
 
 	/**
 	 * Create the application.
 	 */
-	public VentanaNipah() {
-		initialize();
+	public VentanaNipah(boolean sonido) {
+		initialize(sonido);
 	}
+	
+	protected void initialize(boolean sonido) {
+		frame = new JFrame(); //anchura 0-1250, altura 0-600
+		int anchura = random.nextInt(1251); // El límite superior (1251) es exclusivo, por lo que genera números de 0 a 1250
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	protected void initialize() {
-		frame = new JFrame();
-		frame.setBounds(700, 300, 500, 400);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧");
+        // Generar un número aleatorio para la altura (entre 0 y 600)
+        int altura = random.nextInt(601);
+		frame.setBounds(anchura, altura, 480, 360);
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		frame.setTitle("nipaaah~~ (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧");
 		panel = new JPanel();
 		panel.setLayout(null);
 		frame.add(panel);
 		gifNipah = new ImageIcon("img/nipah.gif");
 		gifNipahLabel = new JLabel(gifNipah);
-		gifNipahLabel.setBounds(-100, -50, 700, 500);
+		gifNipahLabel.setBounds(0, 0, 480, 360);
 		panel.add(gifNipahLabel);
+		if (sonido) {
 		try {
             File file = new File("sfx/nipah.wav");
-            Clip clip = AudioSystem.getClip();
+            clip = AudioSystem.getClip();
             clip.open(AudioSystem.getAudioInputStream(file));
             clip.start();
         } catch (Exception e) {
             e.printStackTrace();
         }
-		
+		}
 	}
 
 }
