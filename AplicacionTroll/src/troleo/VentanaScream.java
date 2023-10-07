@@ -1,6 +1,5 @@
 package troleo;
 
-import java.awt.EventQueue;
 import java.io.File;
 
 import javax.sound.sampled.AudioSystem;
@@ -24,9 +23,6 @@ public class VentanaScream {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
@@ -41,7 +37,7 @@ public class VentanaScream {
 		frame.getContentPane().add(panel);
 		gifScream = new ImageIcon("img/screamer.gif");
 		gifScreamLabel = new JLabel(gifScream);
-		gifScreamLabel.setBounds(-200, 0, 1920, 1080);
+		gifScreamLabel.setBounds(-70, 0, 1920, 1080);
 		panel.add(gifScreamLabel);
 		
 		try {

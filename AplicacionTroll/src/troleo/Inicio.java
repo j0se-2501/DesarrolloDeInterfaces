@@ -1,8 +1,5 @@
 package troleo;
 
-import java.awt.Dimension;
-import java.awt.EventQueue;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -86,16 +83,11 @@ public class Inicio {
                             }
                         }
 
-                        // Detener la música (sustituye esta línea por tu lógica de detener la música)
-                        // Ejemplo: reproductorDeMusica.stop();
-
-                        // Abrir una nueva ventana de otra clase
                         ventanaScream = new VentanaScream();
                         ventanaScream.frame.setVisible(true);
                         
-                        // Detener el temporizador después de realizar las acciones
                         ((Timer) e.getSource()).stop();
-                        Timer cerrarVentanaTimer = new Timer(6000, new ActionListener() {
+                        Timer timer2 = new Timer(6000, new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
                             	ventanaScream.clip.stop();
@@ -104,8 +96,8 @@ public class Inicio {
                                 cerrarMaybe.frame.setVisible(true);
                             }
                         });
-                        cerrarVentanaTimer.setRepeats(false); // Esto asegura que el temporizador se ejecute solo una vez
-                        cerrarVentanaTimer.start();
+                        timer2.setRepeats(false); // Esto asegura que el temporizador se ejecute solo una vez
+                        timer2.start();
                     }
                 });
                 timer.start();

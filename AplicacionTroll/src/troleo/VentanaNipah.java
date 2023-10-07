@@ -1,6 +1,5 @@
 package troleo;
 
-import java.awt.EventQueue;
 import java.io.File;
 import java.util.Random;
 
@@ -17,21 +16,18 @@ public class VentanaNipah {
 	protected JPanel panel;
 	protected ImageIcon gifNipah;
 	protected JLabel gifNipahLabel;
-	protected Random random = new Random();
+	protected Random random = new Random(); //para que aparezca la ventana
+											//en lugares aleatorios
 	protected Clip clip;
 
-	/**
-	 * Create the application.
-	 */
+	
 	public VentanaNipah(boolean sonido) {
 		initialize(sonido);
 	}
 	
 	protected void initialize(boolean sonido) {
 		frame = new JFrame(); //anchura 0-1250, altura 0-600
-		int anchura = random.nextInt(1251); // El límite superior (1251) es exclusivo, por lo que genera números de 0 a 1250
-
-        // Generar un número aleatorio para la altura (entre 0 y 600)
+		int anchura = random.nextInt(1251);
         int altura = random.nextInt(601);
 		frame.setBounds(anchura, altura, 480, 360);
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);

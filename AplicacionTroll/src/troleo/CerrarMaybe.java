@@ -1,14 +1,10 @@
 package troleo;
 
-import java.awt.Dimension;
-import java.awt.EventQueue;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -22,15 +18,11 @@ public class CerrarMaybe {
 	protected ImageIcon pngTroll;
 	protected JLabel pngTrollLabel;
 	protected JButton boton;
-	private int contador = 0;
 
 	public CerrarMaybe(boolean deVerdad) {
 		initialize(deVerdad);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	protected void initialize(boolean deVerdad) {
 		
 		frame = new JFrame();
