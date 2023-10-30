@@ -31,6 +31,7 @@ public class Interfaz {
 	private JTable tablaAlumnos;
 	private DefaultTableModel modeloTabla;
 	private JScrollPane scrollPane;
+	private Estudiante estudiante;
 	
 	public static void main(String[] args) {
 		Estudiante.estudiantesPorDefecto();
@@ -239,6 +240,8 @@ public class Interfaz {
             botonEnviar.setBounds(250, 150, 80, 25);
             panelCorregirAlumno.add(botonEnviar);
             
+            estudiante = new Estudiante();
+            
          // Configurar el ActionListener para el botón "Buscar"
             botonBuscar.addActionListener(new ActionListener() {
                 @Override
@@ -250,7 +253,7 @@ public class Interfaz {
                     Iterator<Map.Entry<Estudiante, Double>> iterator = Estudiante.mapaAlumnosNota.entrySet().iterator();
                     while (iterator.hasNext()) {
                         Map.Entry<Estudiante, Double> entry = iterator.next();
-                        Estudiante estudiante = entry.getKey();
+                        estudiante = entry.getKey();
                         
                         // Comprobar si el ID coincide con el ID buscado
                         if (estudiante.getId() == idBuscado) {
@@ -280,7 +283,7 @@ public class Interfaz {
                     double nuevaNota = Double.parseDouble(textFieldNota.getText());
 
                     // Llamar al método editarEstudiante con los valores ingresados
-                    // estudiante.editarEstudiante(nuevoNombre, nuevaNota);
+                    Estudiante.editarEstudiante(estudiante.getId(), nuevoNombre, nuevaNota);
 
                     // Actualizar la tabla
                     actualizarTabla();

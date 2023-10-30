@@ -1,6 +1,7 @@
 package actividad1;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class Estudiante {
 	
@@ -43,6 +44,10 @@ public class Estudiante {
 		super();
 		this.id = contador++;
 		this.nombre = nombre;
+	}
+	
+	public Estudiante() {
+		super();
 	}
 	
 	//metodos
@@ -99,8 +104,21 @@ public class Estudiante {
 	}
 	
 	public static void editarEstudiante(int id, String nuevoNombre, double nuevaNota) {
-		Estudiante estudiante = new Estudiante(nuevoNombre, nuevaNota);
-		mapaAlumnosNota.put(estudiante, nuevaNota);
+		Iterator<HashMap.Entry<Estudiante, Double>> iterator = mapaAlumnosNota.entrySet().iterator();
+        while (iterator.hasNext()) {
+            HashMap.Entry<Estudiante, Double> entry = iterator.next();
+            Estudiante estudiante = entry.getKey();
+
+            // Comprobar si el ID coincide con el ID proporcionado
+            if (estudiante.getId() == id) {
+                // Cambiar el nombre y la nota del estudiante
+                estudiante.setNombre(nuevoNombre);
+                estudiante.setNota(nuevaNota);
+                mapaAlumnosNota.put(estudiante, nuevaNota);
+                return; // Salir del bucle ya que se encontró el estudiante
+            }
+        }
+		
 	}
 	
 }
