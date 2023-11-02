@@ -56,9 +56,9 @@ public class Estudiante {
 	
 	public static void estudiantesPorDefecto() {
 		
-		contador=0;
+		contador=0; //reseteo el contador a 0 para volver a contar las id desde 0
 		
-		mapaAlumnosNota.clear();
+		mapaAlumnosNota.clear(); //vacio el mapa
 		
 		Estudiante estudiante1 = new Estudiante("Gomez Hernandez, Pepito", 7.50);
 		Estudiante estudiante2 = new Estudiante("Fernandez Garcia, Laura", 5.20);
