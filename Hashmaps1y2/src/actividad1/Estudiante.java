@@ -5,10 +5,12 @@ import java.util.Iterator;
 
 public class Estudiante {
 	
-	//atributos
 	
 	private static int contador = 0;
 	public static HashMap <Estudiante, Double> mapaAlumnosNota = new HashMap<>();
+	
+	//atributos
+	
 	private int id;
 	private String nombre;
 	private double nota;
@@ -53,6 +55,10 @@ public class Estudiante {
 	//metodos
 	
 	public static void estudiantesPorDefecto() {
+		
+		contador=0;
+		
+		mapaAlumnosNota.clear();
 		
 		Estudiante estudiante1 = new Estudiante("Gomez Hernandez, Pepito", 7.50);
 		Estudiante estudiante2 = new Estudiante("Fernandez Garcia, Laura", 5.20);
@@ -109,13 +115,28 @@ public class Estudiante {
             HashMap.Entry<Estudiante, Double> entry = iterator.next();
             Estudiante estudiante = entry.getKey();
 
-            // Comprobar si el ID coincide con el ID proporcionado
+            //compruebo si el ID coincide con el ID proporcionado
             if (estudiante.getId() == id) {
-                // Cambiar el nombre y la nota del estudiante
+                //cambio el nombre y la nota del estudiante
                 estudiante.setNombre(nuevoNombre);
                 estudiante.setNota(nuevaNota);
                 mapaAlumnosNota.put(estudiante, nuevaNota);
-                return; // Salir del bucle ya que se encontró el estudiante
+                return; //salgo del bucle
+            }
+        }
+		
+	}
+	
+	public static void eliminarEstudiante(int id) { //igual que editar pero con el metodo remove
+		Iterator<HashMap.Entry<Estudiante, Double>> iterator = mapaAlumnosNota.entrySet().iterator();
+        while (iterator.hasNext()) {
+            HashMap.Entry<Estudiante, Double> entry = iterator.next();
+            Estudiante estudiante = entry.getKey();
+
+            if (estudiante.getId() == id) {
+                
+                mapaAlumnosNota.remove(estudiante, estudiante.getNota());
+                return;
             }
         }
 		
