@@ -18,6 +18,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
+//me he sobrecomplicado creando una clase estudiante de forma que no tiene sentido el ejercicio
+
 public class Principal {
 	
 	private JFrame frame;
