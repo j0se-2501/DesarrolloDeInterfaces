@@ -1,10 +1,9 @@
 package ej01;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -17,10 +16,15 @@ public class Principal {
 		
 		for (int i=0; i<tamanno; i++) {
 			Random random = new Random();
-			listaNumeros.add(random.nextInt(1000) + 1);
+			int randomInt=random.nextInt(1000) + 1;
+			if (listaNumeros.contains(randomInt)) //para que no se repitan los numeros aleatorios ya incluidos en la coleccion
+			i--;
+			else
+			listaNumeros.add(randomInt);
 		}
 		
-		System.out.println(listaNumeros);
+		for(int numero : listaNumeros)
+		System.out.println((listaNumeros.indexOf(numero)+1)+": "+numero); //para asegurarme por consola de que hay 100 numeros
 		
 		Predicate<Integer> esPrimo = (numero) -> { if (numero <= 1) //Predicate porque recibe un argumento y retorna un boolean
 	       
@@ -44,8 +48,9 @@ public class Principal {
 	    
 		};
 		
-		List<Integer> listaPrimos = listaNumeros.stream().filter(esPrimo).collect(Collectors.toList());
-		System.out.println("Primos: "+listaPrimos);
+		List<Integer> listaPrimos = listaNumeros.stream().filter(esPrimo).sorted().collect(Collectors.toList());
+		System.out.println("\nPrimos: "+listaPrimos);
+		System.out.println("Total de primos: "+listaPrimos.size());
 		
 		
 	}
