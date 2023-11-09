@@ -1,7 +1,6 @@
 package ej01;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
@@ -14,14 +13,7 @@ public class Principal {
 		int tamanno=100;
 		List<Integer> listaNumeros = new ArrayList<Integer>();
 		
-		for (int i=0; i<tamanno; i++) {
-			Random random = new Random();
-			int randomInt=random.nextInt(1000) + 1;
-			if (listaNumeros.contains(randomInt)) //para que no se repitan los numeros aleatorios ya incluidos en la coleccion
-			i--;
-			else
-			listaNumeros.add(randomInt);
-		}
+		annadirRandomsALista(listaNumeros, tamanno); //lo hago metodo para reutilizarlo en el ejercicio 5
 		
 		for(int numero : listaNumeros)
 		System.out.println((listaNumeros.indexOf(numero)+1)+": "+numero); //para asegurarme por consola de que hay 100 numeros
@@ -53,6 +45,17 @@ public class Principal {
 		System.out.println("Total de primos: "+listaPrimos.size());
 		
 		
+	}
+	
+	public static void annadirRandomsALista(List<Integer> listaNumeros, int tamanno) {
+		for (int i=0; i<tamanno; i++) {
+			Random random = new Random();
+			int randomInt=random.nextInt(1000) + 1;
+			if (listaNumeros.contains(randomInt)) //para que no se repitan los numeros aleatorios ya incluidos en la coleccion
+			i--;
+			else
+			listaNumeros.add(randomInt);
+		}
 	}
 
 }
