@@ -1,15 +1,13 @@
 package ej03;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Controlador implements ActionListener {
+public class Controlador {
 	
-	public Vista vistaDesactivarVentana;
+	public Vista vista;
 	Timer timer = new Timer();
 	
 	
@@ -18,38 +16,23 @@ public class Controlador implements ActionListener {
         // un objeto de la clase  llamado vDesactivar
         // y el cual se le esta pasando por parámetro
         // en el constructor de esta clase
-        this.vistaDesactivarVentana=vDesactivar;
+        this.vista=vDesactivar;
     }
 	
 	public void escucharEventos() {
 		
-		vistaDesactivarVentana.botonReanudar.addActionListener(this);
-		vistaDesactivarVentana.botonDetener.addActionListener(this);
+		vista.botonReanudar.addActionListener(e -> {
+	        vista.botonReanudar.setVisible(false);
+	        vista.botonDetener.setVisible(true);
+	        arrancarTimer();
+	    });
+		vista.botonDetener.addActionListener(e -> {
+	        vista.botonDetener.setVisible(false);
+	        vista.botonReanudar.setVisible(true);
+	        timer.cancel();
+	    });
 		
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		
-		if (e.getSource().equals(vistaDesactivarVentana.botonReanudar)) {
-        
-        
-			vistaDesactivarVentana.botonReanudar.setVisible(false);
-        vistaDesactivarVentana.botonDetener.setVisible(true);
-        
-        arrancarTimer();
-        
-		}// Inicia la tarea inmediatamente y repite cada 1000 milisegundos (1 segundo)
-		
-		if (e.getSource().equals(vistaDesactivarVentana.botonDetener)) {
-			
-			
-			vistaDesactivarVentana.botonDetener.setVisible(false);
-		    vistaDesactivarVentana.botonReanudar.setVisible(true);
-		    timer.cancel();
-	        
-		}
-    }
 	
 	public void arrancarTimer() {
 		timer = new Timer();
@@ -57,7 +40,7 @@ public class Controlador implements ActionListener {
             @Override
             public void run() {
                 // Actualiza el textoHora con el valor retornado por horaActualFormateada()
-                vistaDesactivarVentana.textoHora.setText(horaActualFormateada());
+                vista.textoHora.setText(horaActualFormateada());
                 
                 // Imprime el textoHora para verificar que se actualiza cada segundo
                 
@@ -74,7 +57,7 @@ public class Controlador implements ActionListener {
         
         String nombreMes;
         
-        switch (date.getMonth()) {
+        switch (date.getMonth()+1) {
             case 1:
                 nombreMes = "enero";
                 break;
@@ -116,7 +99,7 @@ public class Controlador implements ActionListener {
                 break;
         }
         
-        return "Son las "+date.getHours()+":"+String.format("%02d", date.getMinutes())+":"+String.format("%02d", date.getSeconds())+" del "+date.getDay()+" de " +nombreMes+ " del "+(date.getYear()+1900);
+        return "Son las "+date.getHours()+":"+String.format("%02d", date.getMinutes())+":"+String.format("%02d", date.getSeconds())+" del "+date.getDate()+" de " +nombreMes+ " del "+(date.getYear()+1900);
 		
 	}
 

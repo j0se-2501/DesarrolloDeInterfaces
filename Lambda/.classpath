@@ -6,6 +6,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/DAM/Documents/jose/desarrolloDeInterfaces/Lambda/jar/darcula.jar"/>
+	<classpathentry kind="lib" path="C:/Users/DAM/Documents/jose/desarrolloDeInterfaces/Lambda/jar/JTattoo-1.6.13.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

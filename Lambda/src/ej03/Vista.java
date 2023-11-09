@@ -1,13 +1,9 @@
 package ej03;
 
-import java.awt.FlowLayout;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 public class Vista extends JFrame {
 	
@@ -16,7 +12,6 @@ public class Vista extends JFrame {
 	public JButton botonDetener = new JButton();
 	public JLabel textoHora = new JLabel();
 	private Controlador ejecutarAcciones;
-	
 	
 private void configurarPanel() {
 	
@@ -33,7 +28,7 @@ private void configurarPanel() {
 private void configurarBotonDetener() {
 	
 	botonDetener.setText("Detener");
-	botonDetener.setBounds(30, 5, 90, 30);
+	botonDetener.setBounds(30, 8, 90, 30);
 	botonDetener.setVisible(true);
 		
 }
@@ -41,14 +36,14 @@ private void configurarBotonDetener() {
 private void configurarBotonReanudar() {
 	
 	botonReanudar.setText("Reanudar");
-	botonReanudar.setBounds(30, 5, 90, 30);
+	botonReanudar.setBounds(30, 8, 90, 30);
 	botonReanudar.setVisible(false);
 	
 }
 
 private void configurarTextoHora() {
 	
-	textoHora.setBounds(220, 5, 240, 30);
+	textoHora.setBounds(220, 8, 280, 30);
 	
 }
 
@@ -80,13 +75,7 @@ public Vista() {
     // Agregamos una lámina a la ventana
     this.getContentPane().add(panel);
     
-    /*try {
-		UIManager.setLookAndFeel("Darcula");
-	} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-			| UnsupportedLookAndFeelException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}*/
+    
      
     // llamamos al método que configura la lamina fondo
     // y la lamina de los botones
