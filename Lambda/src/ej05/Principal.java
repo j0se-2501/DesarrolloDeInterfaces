@@ -2,6 +2,7 @@ package ej05;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Principal {
 
@@ -19,25 +20,42 @@ public class Principal {
 
 		ej01.Principal.annadirRandomsALista(listaNumeros, tamanno);
 		
-		List<Integer> sublista1 = new ArrayList<Integer>();
-		List<Integer> sublista2 = new ArrayList<Integer>();
-		List<Integer> sublista3 = new ArrayList<Integer>();
-		List<Integer> sublista4 = new ArrayList<Integer>();
+		List<Integer> sublista1 = listaNumeros.parallelStream()
+				 .filter(numero -> (listaNumeros.indexOf(numero)>=0)&&(listaNumeros.indexOf(numero)<=24))
+				 .collect(Collectors.toList());
+		List<Integer> sublista2 = listaNumeros.parallelStream()
+				 .filter(numero -> (listaNumeros.indexOf(numero)>=25)&&(listaNumeros.indexOf(numero)<=49))
+				 .collect(Collectors.toList());
+		List<Integer> sublista3 = listaNumeros.parallelStream()
+				 .filter(numero -> (listaNumeros.indexOf(numero)>=50)&&(listaNumeros.indexOf(numero)<=74))
+				 .collect(Collectors.toList());
+		List<Integer> sublista4 = listaNumeros.parallelStream()
+				 .filter(numero -> (listaNumeros.indexOf(numero)>=75)&&(listaNumeros.indexOf(numero)<=99))
+				 .collect(Collectors.toList());
 		
-		for (int numero : listaNumeros) {
-			
-			if ((listaNumeros.indexOf(numero)>=0)&&(listaNumeros.indexOf(numero)<=24)) sublista1.add(numero);
-			else if ((listaNumeros.indexOf(numero)>=25)&&(listaNumeros.indexOf(numero)<=49)) sublista2.add(numero);
-			else if ((listaNumeros.indexOf(numero)>=50)&&(listaNumeros.indexOf(numero)<=74)) sublista3.add(numero);
-			else if ((listaNumeros.indexOf(numero)>=75)&&(listaNumeros.indexOf(numero)<=299)) sublista4.add(numero);
-			
-		}
+		int sumaSublista1 = sublista1.parallelStream()
+				 .mapToInt(Integer::intValue)
+				 .sum();
+		int sumaSublista2 = sublista2.parallelStream()
+				 .mapToInt(Integer::intValue)
+				 .sum();
+		int sumaSublista3 = sublista3.parallelStream()
+				 .mapToInt(Integer::intValue)
+				 .sum();
+		int sumaSublista4 = sublista4.parallelStream()
+				 .mapToInt(Integer::intValue)
+				 .sum();
 		
-		System.out.println(sublista1);
-		System.out.println(sublista2);
-		System.out.println(sublista3);
-		System.out.println(sublista4);
-		
+		System.out.println("Lista: "+listaNumeros+
+				"\n\nSublista 1: "+sublista1+
+				"\nTotal sublista 1: "+sumaSublista1+
+				"\n\nSublista 2: "+sublista2+
+				"\nTotal sublista 2: "+sumaSublista2+
+				"\n\nSublista 3: "+sublista3+
+				"\nTotal sublista 3: "+sumaSublista3+
+				"\n\nSublista 4: "+sublista4+
+				"\nTotal sublista 4: "+sumaSublista4+
+				"\n\nTotal de todas las listas: "+(sumaSublista1+sumaSublista2+sumaSublista3+sumaSublista4));
 		
 	}
 
