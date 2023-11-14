@@ -2,11 +2,8 @@ package sprites;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
-
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-
-import vista.Vista;
 
 public class Car extends JPanel {
 	
@@ -14,18 +11,15 @@ public class Car extends JPanel {
 			//El segundo y tercer parámetro serán dos valores enteros que equivalen a la posición en el eje x,y.
 			//El cuarto y quinto parámetro serán las dimensiones que tendrá nuestra imagen, para este ejemplo las dimensiones sera iguales a las dimensiones de nuestro JPanel de esta manera garantizamos que la imagen tenga el mismo tamaño de nuestra ventana JFrame.
 			//El ultimo parámetro solamente pasamos un valor null 
-	
-	
-			public final int ANCHURA_SPRITE =100*Vista.reescalador;
-			public final int ALTURA_SPRITE =59*Vista.reescalador;
 
 		    @Override
 		    public void paint(Graphics g){
-		        
-		        ImageIcon icon = new ImageIcon(getClass().getResource("/spritillos/coche.png"));
-		        g.drawImage(icon.getImage(), 0, 0, ANCHURA_SPRITE, ALTURA_SPRITE, null);
+		        Dimension dimension = new Dimension(100, 59);
+		        ImageIcon icon = new ImageIcon(getClass().getResource("/sprites/coche.png"));
+		        g.drawImage(icon.getImage(), 0, 0, dimension.width, dimension.height, null);
 		        setOpaque(false);
 		        super.paintChildren(g);
+		        
 		    }
 
 }

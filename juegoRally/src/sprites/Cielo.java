@@ -1,6 +1,5 @@
 package sprites;
 
-import java.awt.Dimension;
 import java.awt.Graphics;
 
 import javax.swing.ImageIcon;
@@ -8,7 +7,7 @@ import javax.swing.JPanel;
 
 import vista.Vista;
 
-public class Car extends JPanel {
+public class Cielo extends JPanel {
 	
 	//El primer parámetro sera nuestro objeto de tipo ImageIcon, contiene la imagen que vamos a agregar.
 			//El segundo y tercer parámetro serán dos valores enteros que equivalen a la posición en el eje x,y.
@@ -16,13 +15,13 @@ public class Car extends JPanel {
 			//El ultimo parámetro solamente pasamos un valor null 
 	
 	
-			public final int ANCHURA_SPRITE =100*Vista.reescalador;
-			public final int ALTURA_SPRITE =59*Vista.reescalador;
+			public final int ANCHURA_SPRITE =320*Vista.reescalador;
+			public final int ALTURA_SPRITE =138*Vista.reescalador;
 
 		    @Override
 		    public void paint(Graphics g){
 		        
-		        ImageIcon icon = new ImageIcon(getClass().getResource("/spritillos/coche.png"));
+		        ImageIcon icon = new ImageIcon(getClass().getResource("/spritillos/cielo.png"));
 		        g.drawImage(icon.getImage(), 0, 0, ANCHURA_SPRITE, ALTURA_SPRITE, null);
 		        setOpaque(false);
 		        super.paintChildren(g);
