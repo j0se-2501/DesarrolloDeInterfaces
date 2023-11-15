@@ -2,13 +2,16 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
-import vista.Vista;
+import vista.*;
 
 public class Controlador implements ActionListener {
 	
 	// Creamos una variable de tipo PintarVentana
-    Vista vistaDesactivarVentana;
+    Vista vista;
+    public static hiloJuego juego = new  hiloJuego();
+    int FPS = 60;
      
     /**
      * EL MÉTODO CONSTRUCTOR RECIBIRÁ POR PARÁMETRO UN
@@ -20,7 +23,8 @@ public class Controlador implements ActionListener {
         // un objeto de la clase  llamado vDesactivar
         // y el cual se le esta pasando por parámetro
         // en el constructor de esta clase
-        this.vistaDesactivarVentana=vDesactivar;
+        this.vista=vDesactivar;
+        //this.juego=new Thread(this);
     }
      
     /**
@@ -30,7 +34,7 @@ public class Controlador implements ActionListener {
      */
     public void escucharEventos() {
          
-        
+    	
     }
      
     /**
@@ -41,6 +45,26 @@ public class Controlador implements ActionListener {
     public void actionPerformed(ActionEvent e) {
           
       
+    	
     }
+    
+    public void keyPressed(KeyEvent e) {
+        // Verifica si la tecla presionada es la "A"
+        if (e.getKeyChar() == 'A' || e.getKeyChar() == 'a') {
+            // Realiza las acciones que desees cuando se presiona la tecla "A"
+        	//Thread girarIzquierda = new Thread(vista.carPanel);
+			//Llamada al hilo para ejecutar.
+			//girarIzquierda.start();
+        }
+    }
+
+	
+
+
+	public void update() {
+
+	//vista.carPanel.update();
+
+	}
 
 }

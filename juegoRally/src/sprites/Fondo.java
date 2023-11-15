@@ -1,13 +1,15 @@
 package sprites;
 
 import java.awt.Graphics;
+import java.awt.Image;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import vista.Vista;
 
-public class Fondo extends JPanel {
+public class Fondo extends JLabel {
 	
 	//El primer parámetro sera nuestro objeto de tipo ImageIcon, contiene la imagen que vamos a agregar.
 			//El segundo y tercer parámetro serán dos valores enteros que equivalen a la posición en el eje x,y.
@@ -17,14 +19,14 @@ public class Fondo extends JPanel {
 	
 			public final int ANCHURA_SPRITE =320*Vista.reescalador;
 			public final int ALTURA_SPRITE =21*Vista.reescalador;
-
-		    @Override
-		    public void paint(Graphics g){
-		        
-		        ImageIcon icon = new ImageIcon(getClass().getResource("/spritillos/fondo.png"));
-		        g.drawImage(icon.getImage(), 0, 0, ANCHURA_SPRITE, ALTURA_SPRITE, null);
-		        setOpaque(false);
-		        super.paintChildren(g);
-		    }
+			
+			public Fondo() {
+		    	ImageIcon imageIcon = (new ImageIcon(getClass().getResource("/spritillos/fondo.png")));
+		    	Image image = imageIcon.getImage(); // transform it 
+		    	Image newimg = image.getScaledInstance(ANCHURA_SPRITE, ALTURA_SPRITE,  java.awt.Image.SCALE_FAST); // scale it the smooth way  
+		    	imageIcon = new ImageIcon(newimg);  // transform it back
+		    	this.setIcon(imageIcon);
+		    	this.setBounds(0, 0, ANCHURA_SPRITE, ALTURA_SPRITE);
+		    }		   
 
 }

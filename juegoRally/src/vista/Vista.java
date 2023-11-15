@@ -2,6 +2,7 @@ package vista;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,6 +18,8 @@ import sprites.Camino;
 
 public class Vista extends JFrame {
 	
+	public static int reescalador=4;
+	
 	// Creamos una lámina para colocar encima del JFrame
     public JPanel lienzo = new JPanel();
     public JPanel juego = new JPanel();
@@ -25,7 +28,7 @@ public class Vista extends JFrame {
     public Cielo skyPanel = new Cielo();
     public Fondo backgroundPanel = new Fondo();
     
-    public static int reescalador=4;
+    
     
     public final int ANCHURA_JUEGO=320*reescalador;
 	public final int ALTURA_JUEGO=240*reescalador;
@@ -112,6 +115,7 @@ public class Vista extends JFrame {
         */
         private void ejecutar() {
             ejecutarAcciones = new Controlador(this);
+            ejecutarAcciones.juego.run(); 
             ejecutarAcciones.escucharEventos();
         }
         
@@ -128,12 +132,16 @@ public class Vista extends JFrame {
               
             /* Le decimos que no se puede redimensionar*/
             this.setResizable(false);
+            
+            this.setFocusable(true);
               
             // Le decimos que al cerrar la ventana, acabe el programa
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
               
             // Agregamos una lámina a la ventana
             this.add(lienzo);
+            
+            this.addKeyListener(new MyKeyListener());
              
             // llamamos al método que configura la lamina fondo
             // y la lamina de los botones
@@ -144,6 +152,8 @@ public class Vista extends JFrame {
             configurarCoche();
             configurarCamino();
             configurarCielo();
+            
+           
         
             ejecutar();
         }  
