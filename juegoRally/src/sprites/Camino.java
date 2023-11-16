@@ -19,17 +19,33 @@ public class Camino extends JLabel {
 	
 			public final int ANCHURA_SPRITE =320*Vista.reescalador;
 			public final int ALTURA_SPRITE =98*Vista.reescalador;
+			String rutaSprite="/spritillos/camino0.png";
+			ImageIcon originalIcon;
+			Image image;
 			
-			public Camino() {
-		    	ImageIcon imageIcon = (new ImageIcon(getClass().getResource("/spritillos/path0.png")));
-		    	Image image = imageIcon.getImage(); // transform it 
-		    	Image newimg = image.getScaledInstance(ANCHURA_SPRITE, ALTURA_SPRITE,  java.awt.Image.SCALE_FAST); // scale it the smooth way  
-		    	imageIcon = new ImageIcon(newimg);  // transform it back
-		    	this.setIcon(imageIcon);
-		    	this.setBounds(0, 0, ANCHURA_SPRITE, ALTURA_SPRITE);
+			// Definir el número total de imágenes que tienes
+		    public static final int NUM_IMAGENES = 8;
+
+		    // Arreglo para almacenar tus ImageIcons
+		    public final ImageIcon[] imageIcons = new ImageIcon[NUM_IMAGENES];
+		    
+		    public Camino() {
+				
+				for (int i = 0; i < NUM_IMAGENES; i++) {
+		            originalIcon = new ImageIcon(getClass().getResource("/spritillos/camino" + i + ".png"));
+		            image = originalIcon.getImage().getScaledInstance(ANCHURA_SPRITE, ALTURA_SPRITE, Image.SCALE_FAST);
+		            imageIcons[i] = new ImageIcon(image);
+		        }
+				//Vista vista = new Vista();
+		    	  // transform it back
+		    	this.setIcon(imageIcons[0]);
+		    	//this.setBounds(((vista.ANCHURA_JUEGO/2)-(this.ANCHURA_SPRITE/2)), vista.ALTURA_JUEGO-this.ALTURA_SPRITE, this.ANCHURA_SPRITE, this.ALTURA_SPRITE);
 		    }
 
-	
+			public void moverCamino (int numeroSprite) {
+				this.setIcon(imageIcons[numeroSprite]);
+		    	this.setBounds(((Vista.ANCHURA_JUEGO/2)-(this.ANCHURA_SPRITE/2)), Vista.ALTURA_JUEGO-this.ALTURA_SPRITE, this.ANCHURA_SPRITE, this.ALTURA_SPRITE);
+			}
 
 		   
 
