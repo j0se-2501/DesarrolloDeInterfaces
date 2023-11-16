@@ -2,8 +2,9 @@ package vista;
 
 import java.awt.Color;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
@@ -12,6 +13,8 @@ import controlador.HiloJuego;
 import sprites.Car;
 import sprites.Cielo;
 import sprites.Fondo;
+import sprites.FontNumbers;
+import sprites.FontSpeed;
 import sprites.Camino;
 
 public class Vista extends JFrame {
@@ -25,7 +28,11 @@ public class Vista extends JFrame {
     public Car carPanel = new Car();
     public Cielo skyPanel = new Cielo();
     public Fondo backgroundPanel = new Fondo();
-    
+    public FontSpeed velocimetroSpeed = new FontSpeed();
+    public FontNumbers velocimetro1 = new FontNumbers();
+    public FontNumbers velocimetro2 = new FontNumbers();
+    public FontNumbers velocimetro3 = new FontNumbers();
+    public FontNumbers[] velocimetroDigitos = {velocimetro1, velocimetro2, velocimetro3};
     
     
     public final static int ANCHURA_JUEGO=320*reescalador;
@@ -102,6 +109,25 @@ public class Vista extends JFrame {
     	 juego.add(backgroundPanel);
     	 
      }
+     
+     private void configurarHUD() {
+    	 
+    	 velocimetroSpeed.setLayout(null);
+    	 velocimetroSpeed.setBounds(4, 4, velocimetroSpeed.ANCHURA_SPRITE, velocimetroSpeed.ALTURA_SPRITE);
+    	 velocimetroSpeed.setVisible(true);
+    	 juego.add(velocimetroSpeed);
+    	 
+    	 for (int i=0; i<3; i++) {
+    	 
+    	 velocimetroDigitos[i].setLayout(null);
+    	 velocimetroDigitos[i].setBounds(velocimetroSpeed.ANCHURA_SPRITE+(16*(i+1)), 4, velocimetroDigitos[i].ANCHURA_SPRITE, velocimetroDigitos[i].ALTURA_SPRITE);
+    	 if (i!=0) velocimetroDigitos[i].setVisible(false);
+    	 else velocimetroDigitos[i].setVisible(true);
+    	 juego.add(velocimetroDigitos[i]);
+    	 
+    	 }
+     }
+     
      //Conectar Vista con Controlador
      
      // Creamos una instancia de nuestra clase controlador
@@ -147,6 +173,7 @@ public class Vista extends JFrame {
             configurarLienzo();
             
             configurarJuego();
+            configurarHUD();
             configurarFondo();
             configurarCoche();
             configurarCamino();

@@ -27,23 +27,23 @@ public class Camino extends JLabel {
 		    public static final int NUM_IMAGENES = 8;
 
 		    // Arreglo para almacenar tus ImageIcons
-		    public final ImageIcon[] imageIcons = new ImageIcon[NUM_IMAGENES];
+		    public final ImageIcon[] caminoImageIcons = new ImageIcon[NUM_IMAGENES];
 		    
 		    public Camino() {
 				
 				for (int i = 0; i < NUM_IMAGENES; i++) {
 		            originalIcon = new ImageIcon(getClass().getResource("/spritillos/camino" + i + ".png"));
 		            image = originalIcon.getImage().getScaledInstance(ANCHURA_SPRITE, ALTURA_SPRITE, Image.SCALE_FAST);
-		            imageIcons[i] = new ImageIcon(image);
+		            caminoImageIcons[i] = new ImageIcon(image);
 		        }
 				//Vista vista = new Vista();
 		    	  // transform it back
-		    	this.setIcon(imageIcons[0]);
+		    	this.setIcon(caminoImageIcons[0]);
 		    	//this.setBounds(((vista.ANCHURA_JUEGO/2)-(this.ANCHURA_SPRITE/2)), vista.ALTURA_JUEGO-this.ALTURA_SPRITE, this.ANCHURA_SPRITE, this.ALTURA_SPRITE);
 		    }
 
 			public void moverCamino (int numeroSprite) {
-				this.setIcon(imageIcons[numeroSprite]);
+				this.setIcon(caminoImageIcons[numeroSprite]);
 		    	this.setBounds(((Vista.ANCHURA_JUEGO/2)-(this.ANCHURA_SPRITE/2)), Vista.ALTURA_JUEGO-this.ALTURA_SPRITE, this.ANCHURA_SPRITE, this.ALTURA_SPRITE);
 			}
 

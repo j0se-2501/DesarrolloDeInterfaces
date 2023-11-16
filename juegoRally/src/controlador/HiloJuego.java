@@ -8,7 +8,8 @@ public class HiloJuego implements Runnable {
     int nCamino = 0;
     Controlador controlador;
     static double velocidadHilo;
-    int velocidadGUI;
+    public static int velocidadGUI;
+    static boolean turbo;
 
     public void run() {
         // TODO Auto-generated method stub
@@ -16,6 +17,33 @@ public class HiloJuego implements Runnable {
         while (true) {
         	
         	System.out.println(velocidadGUI);
+        	
+        	if (controlador.vista.carPanel.getVelocidad()==0) {
+        		velocidadGUI=0;
+        		controlador.vista.velocimetroDigitos[0].setVisible(true);
+        		controlador.vista.velocimetroDigitos[1].setVisible(true);
+        		controlador.vista.velocimetroDigitos[2].setVisible(false);
+        		controlador.vista.velocimetroDigitos[0].cambiarNumero(velocidadGUI);
+        		controlador.vista.velocimetroDigitos[0].cambiarNumero(velocidadGUI);
+        	}
+        	else if(velocidadGUI<100) {
+        		controlador.vista.velocimetroDigitos[0].setVisible(true);
+        		controlador.vista.velocimetroDigitos[1].setVisible(true);
+        		controlador.vista.velocimetroDigitos[2].setVisible(false);
+        		controlador.vista.velocimetroDigitos[0].cambiarNumero(velocidadGUI/10);
+        		controlador.vista.velocimetroDigitos[1].cambiarNumero(velocidadGUI%10);
+        	}
+        	else if(velocidadGUI>100&&velocidadGUI<=220) {
+        		
+        		controlador.vista.velocimetroDigitos[0].setVisible(true);
+        		controlador.vista.velocimetroDigitos[1].setVisible(true);
+        		controlador.vista.velocimetroDigitos[2].setVisible(true);
+        		controlador.vista.velocimetroDigitos[0].cambiarNumero(velocidadGUI/100);
+        		controlador.vista.velocimetroDigitos[1].cambiarNumero((velocidadGUI/10)%10);
+        		controlador.vista.velocimetroDigitos[2].cambiarNumero(velocidadGUI%10);
+        		
+        	}
+        	
 
             if (controlador.vista.carPanel.isGirandoIzquierda())
                 controlador.vista.carPanel.setLocation(controlador.vista.carPanel.getX() - (7 * Vista.reescalador),
@@ -24,7 +52,7 @@ public class HiloJuego implements Runnable {
                 controlador.vista.carPanel.setLocation(controlador.vista.carPanel.getX() + (7 * Vista.reescalador),
                         controlador.vista.carPanel.getY());
             if (controlador.vista.carPanel.isAcelerando()) {
-
+            	
                 controlador.vista.pathPanel.moverCamino(nCamino);
                 nCamino++;
                 if (nCamino == 8)
@@ -59,6 +87,7 @@ public class HiloJuego implements Runnable {
                 
                 else if((controlador.vista.carPanel.getVelocidad()==Car.VELOCIDAD_MAXIMA)&&(velocidadHilo%1==0)) {
                 	if(velocidadGUI<220) velocidadGUI=velocidadGUI+10;
+                	turbo = true;
                 }
               
                
@@ -79,11 +108,13 @@ public class HiloJuego implements Runnable {
                 	}
             	controlador.vista.pathPanel.moverCamino(nCamino);
             	
+            	if(!(velocidadGUI==0&&(velocidadHilo%1==0))&&controlador.vista.carPanel.getVelocidad()>0) {
+            	
                 nCamino++;
                 if (nCamino == 8)
                     nCamino = 0;
                 
-            	
+            	}
             	
             }
 
