@@ -14,6 +14,8 @@ public class HiloJuego implements Runnable {
         // TODO Auto-generated method stub
 
         while (true) {
+        	
+        	System.out.println(velocidadGUI);
 
             if (controlador.vista.carPanel.isGirandoIzquierda())
                 controlador.vista.carPanel.setLocation(controlador.vista.carPanel.getX() - (7 * Vista.reescalador),
@@ -33,34 +35,42 @@ public class HiloJuego implements Runnable {
                 if (controlador.vista.carPanel.getVelocidad()<1) {
                     controlador.vista.carPanel.setVelocidad(controlador.vista.carPanel.getVelocidad()+36);
                 	velocidadHilo=50;
-                	velocidadGUI=controlador.vista.carPanel.getVelocidad()-26;
+                	if(velocidadGUI<20) velocidadGUI=velocidadGUI+10;
+                }
+                
+                else if (controlador.vista.carPanel.getVelocidad()<18) {
+                    controlador.vista.carPanel.setVelocidad(controlador.vista.carPanel.getVelocidad()+4);
+                	velocidadHilo=50;
+                	if(velocidadGUI<40) velocidadGUI=velocidadGUI+10;
                 }
                 
                 else if (controlador.vista.carPanel.getVelocidad()<36) {
                     controlador.vista.carPanel.setVelocidad(controlador.vista.carPanel.getVelocidad()+2);
                 	velocidadHilo=50;
-                	velocidadGUI=controlador.vista.carPanel.getVelocidad()-26;
+                	if(velocidadGUI<60) velocidadGUI=velocidadGUI+10;
                 }
                 //else if (controlador.vista.carPanel.getVelocidad()<Car.VELOCIDAD_MAXIMA-28)
                   //  controlador.vista.carPanel.setVelocidad(controlador.vista.carPanel.getVelocidad()+2);
                
                 else if ((controlador.vista.carPanel.getVelocidad()<Car.VELOCIDAD_MAXIMA)&&(velocidadHilo%1==0)) {
                     controlador.vista.carPanel.setVelocidad(controlador.vista.carPanel.getVelocidad()+1);
-                    if(velocidadGUI<220) System.out.println(velocidadGUI=velocidadGUI+10);
+                    if(velocidadGUI<220) velocidadGUI=velocidadGUI+10;
                 }
               
                
                
             }
             if (!controlador.vista.carPanel.isAcelerando()&&(controlador.vista.carPanel.getVelocidad()>0)) {
-            	if(velocidadGUI<220) System.out.println(velocidadGUI=velocidadGUI+10);
+            	
             	
             	velocidadHilo=velocidadHilo+0.5;
             	if(controlador.vista.carPanel.getVelocidad()>50&&(velocidadHilo%11==0)) {
             	controlador.vista.carPanel.setVelocidad(controlador.vista.carPanel.getVelocidad()-1);
+            	velocidadGUI=velocidadGUI-10;
             	}
             	if(controlador.vista.carPanel.getVelocidad()<51&&(velocidadHilo%0.5==0)) {
-            		
+            		if (velocidadGUI>=10&&(velocidadHilo%1.5==0))velocidadGUI=velocidadGUI-10;
+            		else if(velocidadGUI<10)velocidadGUI=0;
                 	controlador.vista.carPanel.setVelocidad(controlador.vista.carPanel.getVelocidad()-1);
                 	}
             	controlador.vista.pathPanel.moverCamino(nCamino);

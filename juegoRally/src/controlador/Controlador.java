@@ -61,6 +61,10 @@ public class Controlador implements ActionListener, KeyListener{
         	HiloJuego.velocidadHilo=0;
         	vista.carPanel.decelerar();
         }
+        if (e.getKeyChar() == 'S' || e.getKeyChar() == 's') {
+        	
+        	vista.carPanel.decelerar();
+        }
     }
 
     @Override
@@ -73,6 +77,9 @@ public class Controlador implements ActionListener, KeyListener{
         }
     	if (e.getKeyChar() == 'W' || e.getKeyChar() == 'w') {
             vista.carPanel.acelerar();
+        }
+    	if (e.getKeyChar() == 'S' || e.getKeyChar() == 's') {
+            vista.carPanel.frenar();
         }
 		
 	}

@@ -64,6 +64,10 @@ public class Car extends JLabel {
 			public void frenar() {
 				this.frenando = true;
 			}
+			
+			public void dejarDeFrenar() {
+				this.frenando = false;
+			}
 
 			public void girarIzquierda() {
 		        girandoIzquierda = true;
