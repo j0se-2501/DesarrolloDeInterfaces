@@ -18,6 +18,7 @@ public class Car extends JLabel {
 			public final int ANCHURA_SPRITE =100*Vista.reescalador, ALTURA_SPRITE =59*Vista.reescalador;
 			private boolean girandoIzquierda, girandoDerecha, acelerando, frenando;
 			private int velocidad = 0;
+			public final static int VELOCIDAD_MAXIMA = 55;
 			
 			
 		    
@@ -55,6 +56,10 @@ public class Car extends JLabel {
 			public void acelerar() {
 				this.acelerando = true;
 			}
+			
+			public void decelerar() {
+				this.acelerando = false;
+			}
 
 			public void frenar() {
 				this.frenando = true;
@@ -83,7 +88,6 @@ public class Car extends JLabel {
 			public void setVelocidad(int velocidad) {
 				this.velocidad = velocidad;
 			}
-		    
 		    
 
 }
