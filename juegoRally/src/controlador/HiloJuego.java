@@ -56,6 +56,10 @@ public class HiloJuego implements Runnable {
                     controlador.vista.carPanel.setVelocidad(controlador.vista.carPanel.getVelocidad()+1);
                     if(velocidadGUI<220) velocidadGUI=velocidadGUI+10;
                 }
+                
+                else if((controlador.vista.carPanel.getVelocidad()==Car.VELOCIDAD_MAXIMA)&&(velocidadHilo%1==0)) {
+                	if(velocidadGUI<220) velocidadGUI=velocidadGUI+10;
+                }
               
                
                
