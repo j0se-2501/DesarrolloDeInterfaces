@@ -18,7 +18,7 @@ public class HiloJuego implements Runnable {
         	
         	System.out.println(velocidadGUI);
         	
-        	if (controlador.vista.carPanel.getVelocidad()==0&&controlador.vista.carPanel.getVelocidad()<10) {
+        	if (controlador.vista.carPanel.getVelocidad()==0) {
         		controlador.vista.velocimetroDigitos[0].setVisible(true);
         		controlador.vista.velocimetroDigitos[1].setVisible(false);
         		controlador.vista.velocimetroDigitos[2].setVisible(false);
@@ -39,15 +39,15 @@ public class HiloJuego implements Runnable {
         		controlador.vista.velocimetroDigitos[2].setVisible(true);
         		controlador.vista.velocimetroDigitos[0].cambiarNumero(velocidadGUI/100);
         		controlador.vista.velocimetroDigitos[1].cambiarNumero((velocidadGUI/10)%10);
-        		controlador.vista.velocimetroDigitos[2].cambiarNumero(velocidadGUI%10);
+        		controlador.vista.velocimetroDigitos[2].cambiarNumero(0);
         		
         	}
         	
 
-            if (controlador.vista.carPanel.isGirandoIzquierda())
+            if (controlador.vista.carPanel.isGirandoIzquierda()&&controlador.vista.carPanel.getVelocidad()>0)
                 controlador.vista.carPanel.setLocation(controlador.vista.carPanel.getX() - (7 * Vista.reescalador),
                         controlador.vista.carPanel.getY());
-            if (controlador.vista.carPanel.isGirandoDerecha())
+            if (controlador.vista.carPanel.isGirandoDerecha()&&controlador.vista.carPanel.getVelocidad()>0)
                 controlador.vista.carPanel.setLocation(controlador.vista.carPanel.getX() + (7 * Vista.reescalador),
                         controlador.vista.carPanel.getY());
             if (controlador.vista.carPanel.isAcelerando()) {
