@@ -46,7 +46,7 @@ public class Controlador implements ActionListener, KeyListener{
     }
     
     public void keyPressed(KeyEvent e) {
-        
+    	
     }
 
     @Override
@@ -62,9 +62,12 @@ public class Controlador implements ActionListener, KeyListener{
         	vista.carPanel.decelerar();
         }
         if (e.getKeyChar() == 'S' || e.getKeyChar() == 's') {
-        	
-        	vista.carPanel.decelerar();
+        	vista.carPanel.dejarDeFrenar();
         }
+        if (e.getKeyChar() == 'V' || e.getKeyChar() == 'v') {
+    		vista.carPanel.quitarTurbo();
+    		vista.turbo.encender(true);
+    	}
     }
 
     @Override
@@ -81,6 +84,9 @@ public class Controlador implements ActionListener, KeyListener{
     	if (e.getKeyChar() == 'S' || e.getKeyChar() == 's') {
             vista.carPanel.frenar();
         }
+    	if (e.getKeyChar() == 'V' || e.getKeyChar() == 'v') {
+    		vista.carPanel.ponerTurbo();
+    	}
 		
 	}
 

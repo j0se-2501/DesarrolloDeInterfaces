@@ -16,23 +16,29 @@ public class Car extends JLabel {
 	
 	
 			public final int ANCHURA_SPRITE =100*Vista.reescalador, ALTURA_SPRITE =59*Vista.reescalador;
-			private boolean girandoIzquierda, girandoDerecha, acelerando, frenando;
+			private boolean girandoIzquierda, girandoDerecha, acelerando, frenando, turbo;
 			private int velocidad = 0;
 			public final static int VELOCIDAD_MAXIMA = 55;
-			
+			ImageIcon imageIcon, imageIconFrenando;
+			Image image, newimg, imageFrenando, newimgFrenando;
 			
 		    
 		    public Car() {
-		    	ImageIcon imageIcon = (new ImageIcon(getClass().getResource("/spritillos/coche.png")));
-		    	Image image = imageIcon.getImage(); // transform it 
-		    	Image newimg = image.getScaledInstance(ANCHURA_SPRITE, ALTURA_SPRITE,  java.awt.Image.SCALE_FAST); // scale it the smooth way  
+		    	imageIcon = (new ImageIcon(getClass().getResource("/spritillos/coche.png")));
+		    	image = imageIcon.getImage(); // transform it 
+		    	newimg = image.getScaledInstance(ANCHURA_SPRITE, ALTURA_SPRITE,  java.awt.Image.SCALE_FAST); // scale it the smooth way  
 		    	imageIcon = new ImageIcon(newimg);  // transform it back
+		    	imageIconFrenando = (new ImageIcon(getClass().getResource("/spritillos/cocheFrenando.png")));
+		    	imageFrenando = imageIconFrenando.getImage(); // transform it 
+		    	newimgFrenando = imageFrenando.getScaledInstance(ANCHURA_SPRITE, ALTURA_SPRITE,  java.awt.Image.SCALE_FAST); // scale it the smooth way  
+		    	imageIconFrenando = new ImageIcon(newimgFrenando);  // transform it back
 		    	this.setIcon(imageIcon);
 		    	this.setBounds(0, 0, ANCHURA_SPRITE, ALTURA_SPRITE);
 		    	this.girandoIzquierda=false;
 		    	this.girandoDerecha=false;
 		    	this.acelerando=false;
 		    	this.frenando=false;
+		    	this.turbo=false;
 		    }
 		    
 		    //getters y setters
@@ -63,10 +69,24 @@ public class Car extends JLabel {
 
 			public void frenar() {
 				this.frenando = true;
+				this.setIcon(imageIconFrenando);
 			}
 			
 			public void dejarDeFrenar() {
 				this.frenando = false;
+				this.setIcon(imageIcon);
+			}
+			
+			public void ponerTurbo() {
+				this.turbo = true;
+			}
+			
+			public void quitarTurbo() {
+				this.turbo = false;
+			}
+			
+			public boolean isTurbo() {
+				return turbo;
 			}
 
 			public void girarIzquierda() {

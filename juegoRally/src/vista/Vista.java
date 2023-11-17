@@ -15,11 +15,13 @@ import sprites.Cielo;
 import sprites.Fondo;
 import sprites.FontNumbers;
 import sprites.FontSpeed;
+import sprites.Max;
+import sprites.Turbo;
 import sprites.Camino;
 
 public class Vista extends JFrame {
 	
-	public static int reescalador=2;
+	public static int reescalador=4;
 	
 	// Creamos una lámina para colocar encima del JFrame
     public JPanel lienzo = new JPanel();
@@ -33,6 +35,8 @@ public class Vista extends JFrame {
     public FontNumbers velocimetro2 = new FontNumbers();
     public FontNumbers velocimetro3 = new FontNumbers();
     public FontNumbers[] velocimetroDigitos = {velocimetro1, velocimetro2, velocimetro3};
+    public Turbo turbo = new Turbo();
+    public Max max = new Max();
     
     
     public final static int ANCHURA_JUEGO=320*reescalador;
@@ -113,18 +117,27 @@ public class Vista extends JFrame {
      private void configurarHUD() {
     	 
     	 velocimetroSpeed.setLayout(null);
-    	 velocimetroSpeed.setBounds(4, 4, velocimetroSpeed.ANCHURA_SPRITE, velocimetroSpeed.ALTURA_SPRITE);
+    	 velocimetroSpeed.setBounds(4*reescalador, 8*reescalador, velocimetroSpeed.ANCHURA_SPRITE, velocimetroSpeed.ALTURA_SPRITE);
     	 velocimetroSpeed.setVisible(true);
     	 juego.add(velocimetroSpeed);
     	 
     	 for (int i=0; i<3; i++) {
     	 
     	 velocimetroDigitos[i].setLayout(null);
-    	 velocimetroDigitos[i].setBounds(velocimetroSpeed.ANCHURA_SPRITE+(16*(i+1)), 4, velocimetroDigitos[i].ANCHURA_SPRITE, velocimetroDigitos[i].ALTURA_SPRITE);
+    	 velocimetroDigitos[i].setBounds(velocimetroSpeed.ANCHURA_SPRITE+(9*reescalador*(i+1)), 8*reescalador, velocimetroDigitos[i].ANCHURA_SPRITE, velocimetroDigitos[i].ALTURA_SPRITE);
     	 if (i!=0) velocimetroDigitos[i].setVisible(false);
     	 else velocimetroDigitos[i].setVisible(true);
     	 juego.add(velocimetroDigitos[i]);
     	 
+    	 turbo.setLayout(null);
+    	 turbo.setBounds(((ANCHURA_JUEGO/2)-(turbo.ANCHURA_SPRITE/2))-4*reescalador, 4*reescalador, turbo.ANCHURA_SPRITE, turbo.ALTURA_SPRITE);
+    	 turbo.setVisible(true);
+    	 juego.add(turbo);
+    	 
+    	 max.setLayout(null);
+    	 max.setBounds(velocimetroSpeed.ANCHURA_SPRITE+(9*reescalador), 8*reescalador, max.ANCHURA_SPRITE, max.ALTURA_SPRITE);
+    	 max.setVisible(false);
+    	 juego.add(max);
     	 }
      }
      
