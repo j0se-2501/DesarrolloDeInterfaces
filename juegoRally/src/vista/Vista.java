@@ -21,7 +21,7 @@ import sprites.Camino;
 
 public class Vista extends JFrame {
 	
-	public static int reescalador=4;
+	public static int reescalador=3;
 	
 	// Creamos una lámina para colocar encima del JFrame
     public JPanel lienzo = new JPanel();
