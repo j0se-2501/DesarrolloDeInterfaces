@@ -9,7 +9,7 @@ import vista.Vista;
 
 public class FontSpeed extends JLabel {
 	
-	public final int ANCHURA_SPRITE =63*Vista.reescalador;
+	public final int ANCHURA_SPRITE =49*Vista.reescalador;
 	public final int ALTURA_SPRITE =11*Vista.reescalador;
 
 	public FontSpeed() {

@@ -18,22 +18,21 @@ public class HiloJuego implements Runnable {
         	
         	System.out.println(velocidadGUI);
         	
-        	if (controlador.vista.carPanel.getVelocidad()==0) {
-        		velocidadGUI=0;
+        	if (controlador.vista.carPanel.getVelocidad()==0&&controlador.vista.carPanel.getVelocidad()<10) {
+        		controlador.vista.velocimetroDigitos[0].setVisible(true);
+        		controlador.vista.velocimetroDigitos[1].setVisible(false);
+        		controlador.vista.velocimetroDigitos[2].setVisible(false);
+        		controlador.vista.velocimetroDigitos[0].cambiarNumero(velocidadGUI);
+        	}
+        	else if(velocidadGUI>=10&&velocidadGUI<100) {
         		controlador.vista.velocimetroDigitos[0].setVisible(true);
         		controlador.vista.velocimetroDigitos[1].setVisible(true);
         		controlador.vista.velocimetroDigitos[2].setVisible(false);
-        		controlador.vista.velocimetroDigitos[0].cambiarNumero(velocidadGUI);
-        		controlador.vista.velocimetroDigitos[0].cambiarNumero(velocidadGUI);
+        		if(velocidadGUI==10) controlador.vista.velocimetroDigitos[0].cambiarNumero(1);
+        		else controlador.vista.velocimetroDigitos[0].cambiarNumero(velocidadGUI/10);
+        		controlador.vista.velocimetroDigitos[1].cambiarNumero(0);
         	}
-        	else if(velocidadGUI<100) {
-        		controlador.vista.velocimetroDigitos[0].setVisible(true);
-        		controlador.vista.velocimetroDigitos[1].setVisible(true);
-        		controlador.vista.velocimetroDigitos[2].setVisible(false);
-        		controlador.vista.velocimetroDigitos[0].cambiarNumero(velocidadGUI/10);
-        		controlador.vista.velocimetroDigitos[1].cambiarNumero(velocidadGUI%10);
-        	}
-        	else if(velocidadGUI>100&&velocidadGUI<=220) {
+        	else if(velocidadGUI>=100&&velocidadGUI<=220) {
         		
         		controlador.vista.velocimetroDigitos[0].setVisible(true);
         		controlador.vista.velocimetroDigitos[1].setVisible(true);
