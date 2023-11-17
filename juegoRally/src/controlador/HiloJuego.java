@@ -89,9 +89,8 @@ public class HiloJuego implements Runnable {
                 	turbo = true;
                 }
               
-               
-               
             }
+            
             if (!controlador.vista.carPanel.isAcelerando()&&(controlador.vista.carPanel.getVelocidad()>0)) {
             	
             	
