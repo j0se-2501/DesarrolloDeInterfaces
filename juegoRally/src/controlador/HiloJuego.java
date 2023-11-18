@@ -20,7 +20,7 @@ public class HiloJuego implements Runnable {
         	
         	
         	
-        	if (controlador.vista.carPanel.getVelocidad()==0&&velocidadGUI<10) {
+        	if (controlador.vista.carPanel.getVelocidad()==0) {
         		controlador.vista.turbo.encender(false);
         		if (controlador.vista.carPanel.isFrenando()&&velocidadGUI==0)controlador.vista.carPanel.decelerar();
         		controlador.vista.velocimetroDigitos[0].setVisible(true);
