@@ -101,7 +101,7 @@ public class Controlador implements ActionListener, KeyListener{
 		
     }
 
-    public void mando() {
+    /*public void mando() {
     	//mando
         
     	try {
@@ -150,7 +150,7 @@ public class Controlador implements ActionListener, KeyListener{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    }
+    }*/
 	
 
 }

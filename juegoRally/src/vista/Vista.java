@@ -153,7 +153,6 @@ public class Vista extends JFrame {
         private void ejecutar() {
             ejecutarAcciones = new Controlador(this);
             ejecutarAcciones.escucharEventos();
-            ejecutarAcciones.mando();
             HiloJuego juego = new HiloJuego(ejecutarAcciones);
             Thread HiloJuego = new Thread(juego);
 			//Llamada al hilo para ejecutar.
