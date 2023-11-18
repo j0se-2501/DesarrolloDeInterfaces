@@ -37,6 +37,14 @@ public class HiloJuego implements Runnable {
         	}
         	else if(velocidadGUI>=100&&velocidadGUI<=220) {
         		
+        		if (!controlador.vista.max.isVisible()) {
+        			
+        			controlador.vista.velocimetroDigitos[0].setVisible(true);
+            		controlador.vista.velocimetroDigitos[1].setVisible(true);
+            		controlador.vista.velocimetroDigitos[2].setVisible(true);
+            		
+        		}
+        		
         		if(velocidadGUI<220) {
         			controlador.vista.velocimetroSpeed.turbo(false);
         			controlador.vista.turbo.encender(false);
@@ -69,13 +77,7 @@ public class HiloJuego implements Runnable {
                 	}
         		}
         		
-        		if (!controlador.vista.carPanel.isTurbo()) {
-        			
-        			controlador.vista.velocimetroDigitos[0].setVisible(true);
-            		controlador.vista.velocimetroDigitos[1].setVisible(true);
-            		controlador.vista.velocimetroDigitos[2].setVisible(true);
-            		
-        		}
+        		
         		
         		
         		
@@ -209,12 +211,12 @@ public class HiloJuego implements Runnable {
             	controlador.vista.velocimetroDigitos[2].setVisible(false);
             	controlador.vista.max.setVisible(true);
             	controlador.vista.turbo.pulsar(true);
-            	velocidadTurbo=7;
+            	if (velocidadTurbo<8&&velocidadHilo%2==0)velocidadTurbo++;
             }
             else if (!controlador.vista.carPanel.isTurbo()) {
             	controlador.vista.max.setVisible(false);
             	controlador.vista.turbo.pulsar(false);
-            	velocidadTurbo=0;
+            	if (velocidadTurbo>-1&&velocidadHilo%2==0)velocidadTurbo--;
             }
             }
 

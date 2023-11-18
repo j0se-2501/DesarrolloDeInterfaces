@@ -86,7 +86,7 @@ public class Controlador implements ActionListener, KeyListener{
             vista.carPanel.frenar();
         }
     	if (e.getKeyChar() == 'V' || e.getKeyChar() == 'v') {
-    		vista.carPanel.ponerTurbo();
+    		if (HiloJuego.velocidadGUI==220) vista.carPanel.ponerTurbo();
     	}
 		
 	}
