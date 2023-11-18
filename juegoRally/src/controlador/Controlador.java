@@ -5,6 +5,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import com.github.strikerx3.jxinput.XInputAxes;
+import com.github.strikerx3.jxinput.XInputButtons;
+import com.github.strikerx3.jxinput.XInputComponents;
+import com.github.strikerx3.jxinput.XInputDevice;
+import com.github.strikerx3.jxinput.enums.XInputButton;
+import com.github.strikerx3.jxinput.exceptions.XInputNotLoadedException;
+import com.github.strikerx3.jxinput.listener.SimpleXInputDeviceListener;
+
 import vista.*;
 
 public class Controlador implements ActionListener, KeyListener{
@@ -24,6 +32,8 @@ public class Controlador implements ActionListener, KeyListener{
         // en el constructor de esta clase
         this.vista=vista;
     }
+    
+    
      
     /**
      * ESTE MÉTODO PONE A LA ESCUCHA DE LOS EVENTOS
@@ -89,15 +99,58 @@ public class Controlador implements ActionListener, KeyListener{
     		if (HiloJuego.velocidadGUI==220) vista.carPanel.ponerTurbo();
     	}
 		
-	}
+    }
 
+    public void mando() {
+    	//mando
+        
+    	try {
+		
+    	XInputDevice[] devices = XInputDevice.getAllDevices();
+    	XInputDevice device = XInputDevice.getDeviceFor(0);
+    	
+        if (device.poll()) {
+            // Retrieve the components
+            XInputComponents components = device.getComponents();
 
-	public void update() {
+            XInputButtons buttons = components.getButtons();
+            XInputAxes axes = components.getAxes();
 
-	//vista.carPanel.update();
+            // Buttons and axes have public fields (although this is not idiomatic Java)
 
-	}
+            SimpleXInputDeviceListener listener = new SimpleXInputDeviceListener() {
+                @Override
+                public void connected() {
+                    // Resume the game
+                }
 
+                @Override
+                public void disconnected() {
+                    // Pause the game and display a message
+                }
+
+                @Override
+                public void buttonChanged(final XInputButton button, final boolean pressed) {
+                    // The given button was just pressed (if pressed == true) or released (pressed == false)
+                	if (button == XInputButton.DPAD_RIGHT&&pressed==true) vista.carPanel.acelerar();
+                	else if (button == XInputButton.DPAD_RIGHT&&pressed==false) {
+                		HiloJuego.velocidadHilo=0;
+                    	vista.carPanel.decelerar();
+                	}
+                	else if (button == XInputButton.DPAD_DOWN&&pressed==true) vista.carPanel.frenar();
+                	else if (button == XInputButton.DPAD_DOWN&&pressed==false) vista.carPanel.dejarDeFrenar();
+                	//else if (button == XInputAxes.get()
+                }
+            };
+
+        } else {
+            // Controller is not connected; display a message
+        }
+    	} catch (XInputNotLoadedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 	
 
 }
