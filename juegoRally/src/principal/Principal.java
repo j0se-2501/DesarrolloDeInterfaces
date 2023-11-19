@@ -13,6 +13,7 @@ public class Principal {
          
         // Hacemos visible la ventana
         ventanaPintada.setVisible(true);
+		
 	}
 
 }

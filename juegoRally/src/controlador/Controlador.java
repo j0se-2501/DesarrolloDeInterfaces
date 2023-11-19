@@ -12,14 +12,19 @@ import com.github.strikerx3.jxinput.XInputDevice;
 import com.github.strikerx3.jxinput.enums.XInputButton;
 import com.github.strikerx3.jxinput.exceptions.XInputNotLoadedException;
 import com.github.strikerx3.jxinput.listener.SimpleXInputDeviceListener;
+import com.github.strikerx3.jxinput.listener.XInputDeviceListener;
 
 import vista.*;
 
-public class Controlador implements ActionListener, KeyListener{
+public class Controlador implements ActionListener, KeyListener, XInputDeviceListener{
 	
 	// Creamos una variable de tipo PintarVentana
     Vista vista;
-     
+    XInputDevice device;
+    XInputDevice[] devices;
+    XInputComponents components;
+    XInputButtons buttons;
+    XInputAxes axes;
     /**
      * EL MÉTODO CONSTRUCTOR RECIBIRÁ POR PARÁMETRO UN
      * OBJETO DE TIPO PINTAR VENTANA Y A ESTE OBJETO
@@ -100,48 +105,49 @@ public class Controlador implements ActionListener, KeyListener{
     	}
 		
     }
+    
+    @Override
+	public void connected() {
+        // Resume the game
+    }
 
-    /*public void mando() {
-    	//mando
-        
+    @Override
+    public void disconnected() {
+        // Pause the game and display a message
+    }
+
+    @Override
+    public void buttonChanged(final XInputButton button, final boolean pressed) {
+        // The given button was just pressed (if pressed == true) or released (pressed == false)
+    	if (button == XInputButton.B&&pressed==true) vista.carPanel.acelerar();
+    	else if (button == XInputButton.B&&pressed==false) {
+    		HiloJuego.velocidadHilo=0;
+        	vista.carPanel.decelerar();
+    	}
+    	if (button == XInputButton.A&&pressed==true) vista.carPanel.frenar();
+    	else if (button == XInputButton.A&&pressed==false) vista.carPanel.dejarDeFrenar();
+    	//else if (button == XInputAxes.get()
+    }
+
+    public void mando() {
+    	
     	try {
 		
-    	XInputDevice[] devices = XInputDevice.getAllDevices();
-    	XInputDevice device = XInputDevice.getDeviceFor(0);
+    	devices = XInputDevice.getAllDevices();
+    	device = XInputDevice.getDeviceFor(0);
+          
     	
-        if (device.poll()) {
-            // Retrieve the components
-            XInputComponents components = device.getComponents();
+        if (device!=null) {
+            System.out.println("device poll");
+            components = device.getComponents();
 
-            XInputButtons buttons = components.getButtons();
-            XInputAxes axes = components.getAxes();
+            buttons = components.getButtons();
+            axes = components.getAxes();
 
             // Buttons and axes have public fields (although this is not idiomatic Java)
 
-            SimpleXInputDeviceListener listener = new SimpleXInputDeviceListener() {
-                @Override
-                public void connected() {
-                    // Resume the game
-                }
-
-                @Override
-                public void disconnected() {
-                    // Pause the game and display a message
-                }
-
-                @Override
-                public void buttonChanged(final XInputButton button, final boolean pressed) {
-                    // The given button was just pressed (if pressed == true) or released (pressed == false)
-                	if (button == XInputButton.DPAD_RIGHT&&pressed==true) vista.carPanel.acelerar();
-                	else if (button == XInputButton.DPAD_RIGHT&&pressed==false) {
-                		HiloJuego.velocidadHilo=0;
-                    	vista.carPanel.decelerar();
-                	}
-                	else if (button == XInputButton.DPAD_DOWN&&pressed==true) vista.carPanel.frenar();
-                	else if (button == XInputButton.DPAD_DOWN&&pressed==false) vista.carPanel.dejarDeFrenar();
-                	//else if (button == XInputAxes.get()
-                }
-            };
+            device.addListener(this);   
+             
 
         } else {
             // Controller is not connected; display a message
@@ -150,7 +156,13 @@ public class Controlador implements ActionListener, KeyListener{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    }*/
+    }
+
+
+   
+		
+		
+	
 	
 
 }
