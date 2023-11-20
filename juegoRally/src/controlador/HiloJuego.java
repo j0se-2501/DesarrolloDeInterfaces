@@ -26,6 +26,9 @@ public class HiloJuego implements Runnable {
         while (true) {
         	
         	System.out.println(velocidadGUI);
+        	System.out.println(controlador.vista.carPanel.getVelocidad());
+        	System.out.println(velocidadTurbo);
+        	
         	 if (controlador.device.poll()) {
         	    XInputComponents components = controlador.device.getComponents();
         	    XInputAxes axesComponents = components.getAxes();
@@ -225,7 +228,7 @@ public class HiloJuego implements Runnable {
             
             if (controlador.vista.carPanel.isFrenando()&&(controlador.vista.carPanel.getVelocidad()>0)) {
             	
-            	if (velocidadTurbo>-1)velocidadTurbo--;
+            	if (velocidadTurbo>0)velocidadTurbo--;
             	if(velocidadGUI==220) {
             		controlador.vista.velocimetroDigitos[0].cambiarNumero(2);
             		controlador.vista.velocimetroDigitos[1].cambiarNumero(2);
@@ -239,7 +242,7 @@ public class HiloJuego implements Runnable {
             	
             	
             	if (controlador.vista.carPanel.isTurbo()) {
-            	if (velocidadTurbo>-1)velocidadTurbo--;
+            	if (velocidadTurbo>0)velocidadTurbo--;
             	controlador.vista.velocimetroSpeed.turbo(false);
             	controlador.vista.max.setVisible(false);
             	//controlador.vista.velocimetroDigitos[0].setVisible(true);
@@ -268,12 +271,12 @@ public class HiloJuego implements Runnable {
             	controlador.vista.velocimetroDigitos[2].setVisible(false);
             	controlador.vista.max.setVisible(true);
             	controlador.vista.turbo.pulsar(true);
-            	if (velocidadTurbo<8&&velocidadHilo%2==0)velocidadTurbo++;
+            	if (velocidadTurbo<6&&velocidadHilo%2==0)velocidadTurbo++;
             }
             else if (!controlador.vista.carPanel.isTurbo()&&velocidadGUI==220) {
             	controlador.vista.max.setVisible(false);
             	//controlador.vista.turbo.encender(true);
-            	if (velocidadTurbo>-1&&velocidadHilo%2==0)velocidadTurbo--;
+            	if (velocidadTurbo>0&&velocidadHilo%2==0)velocidadTurbo--;
             }
             }
 
