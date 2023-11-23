@@ -1,13 +1,13 @@
 package controlador;
 
-import com.github.strikerx3.jxinput.XInputAxes;
-import com.github.strikerx3.jxinput.XInputAxesDelta;
-import com.github.strikerx3.jxinput.XInputButtons;
-import com.github.strikerx3.jxinput.XInputButtonsDelta;
-import com.github.strikerx3.jxinput.XInputComponents;
-import com.github.strikerx3.jxinput.XInputComponentsDelta;
-import com.github.strikerx3.jxinput.enums.XInputAxis;
-import com.github.strikerx3.jxinput.enums.XInputButton;
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import sprites.Car;
 import vista.Vista;
@@ -19,6 +19,8 @@ public class HiloJuego implements Runnable {
     static double velocidadHilo;
     public static int velocidadGUI, velocidadTurbo, estadoGiro;
     static boolean turbo;
+    AudioInputStream audioInputStream;
+    Clip clip;
 
     public void run() {
         // TODO Auto-generated method stub
@@ -29,6 +31,27 @@ public class HiloJuego implements Runnable {
         	System.out.println(controlador.vista.carPanel.getVelocidad());
         	System.out.println(velocidadTurbo);
         	System.out.println(estadoGiro);
+        	
+        	try {
+        		
+        	//clip = AudioSystem.getClip();
+			
+        	if (clip!=null) {
+        		clip.stop();
+        		//clip.close();
+        	}
+        	
+        	audioInputStream = AudioSystem.getAudioInputStream(new File("src/sfx/carEngine"+velocidadGUI/2+".wav").getAbsoluteFile());
+			clip = AudioSystem.getClip();
+	        clip.open(audioInputStream);
+	        clip.start();
+			
+			
+        	} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	
         	
         	 if (controlador.device.poll()&&controlador.teclado==false) {
         		 
@@ -283,7 +306,7 @@ public class HiloJuego implements Runnable {
         }
 
     }
-
+    
     public HiloJuego(Controlador controlador) {
 
         this.controlador = controlador;
