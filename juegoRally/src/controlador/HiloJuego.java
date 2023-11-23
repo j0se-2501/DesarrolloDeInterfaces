@@ -17,7 +17,7 @@ public class HiloJuego implements Runnable {
     int nCamino = 0;
     Controlador controlador;
     static double velocidadHilo;
-    public static int velocidadGUI, velocidadTurbo;
+    public static int velocidadGUI, velocidadTurbo, estadoGiro;
     static boolean turbo;
 
     public void run() {
@@ -25,35 +25,15 @@ public class HiloJuego implements Runnable {
 
         while (true) {
         	
-        	System.out.println(velocidadGUI);
+        	//System.out.println(velocidadGUI);
         	System.out.println(controlador.vista.carPanel.getVelocidad());
         	System.out.println(velocidadTurbo);
+        	System.out.println(estadoGiro);
         	
-        	 if (controlador.device.poll()) {
-        	    XInputComponents components = controlador.device.getComponents();
-        	    XInputAxes axesComponents = components.getAxes();
-
+        	 if (controlador.device.poll()&&controlador.teclado==false) {
+        		 
+        		 controlador.controlesMando2();
         	    
-        	 // Retrieve button state change
-        	    if (axesComponents.rt>0) {
-        	    	if (HiloJuego.velocidadGUI==220) controlador.vista.carPanel.ponerTurbo();
-        	    }if (axesComponents.rt<=0) {
-        	    	controlador.vista.carPanel.quitarTurbo();
-            		if(HiloJuego.velocidadGUI==220&&!controlador.vista.carPanel.isFrenando()) {
-            		controlador.vista.turbo.encender(true);
-            		//controlador.vista.velocimetroSpeed.turbo(false);
-            		}
-        	    }
-        	    if (axesComponents.lx<=-0.90&&axesComponents.lx>=-1.0) {
-        	    	controlador.vista.carPanel.girarIzquierda();
-        	    }
-        	    if (axesComponents.lx>=0.90&&axesComponents.lx<=1.0) {
-        	    	controlador.vista.carPanel.girarDerecha();
-        	    }
-        	    if (axesComponents.lx>=-0.10&&axesComponents.lx<=0.10) {
-        	    	controlador.vista.carPanel.detenerIzquierda();
-        	    	controlador.vista.carPanel.detenerDerecha();
-        	    }
         	 }
         	
         	if (controlador.vista.carPanel.getVelocidad()==0&&velocidadGUI<10) {
@@ -130,25 +110,31 @@ public class HiloJuego implements Runnable {
         	
 
             if (controlador.vista.carPanel.isGirandoIzquierda()&&controlador.vista.carPanel.getVelocidad()>0) {
-            	if (velocidadTurbo>3) controlador.vista.carPanel.setLocation(controlador.vista.carPanel.getX() - (1 * Vista.reescalador),
-                        controlador.vista.carPanel.getY());
-            	else if (velocidadTurbo>2) controlador.vista.carPanel.setLocation(controlador.vista.carPanel.getX() - (2 * Vista.reescalador),
-                        controlador.vista.carPanel.getY());
-            	else if (velocidadTurbo>1) controlador.vista.carPanel.setLocation(controlador.vista.carPanel.getX() - (3 * Vista.reescalador),
-                        controlador.vista.carPanel.getY());
-            	else controlador.vista.carPanel.setLocation(controlador.vista.carPanel.getX() - (3 * Vista.reescalador),
-                        controlador.vista.carPanel.getY());
+            	if (velocidadTurbo>3||(estadoGiro>=0&&estadoGiro<8)) {
+            		controlador.vista.carPanel.setLocation(controlador.vista.carPanel.getX() - (1 * Vista.reescalador), controlador.vista.carPanel.getY());
+            		if (estadoGiro<8) estadoGiro++;
+            		}
+            	else if (velocidadTurbo>2 || (estadoGiro>=8&&estadoGiro<16)) {
+            		controlador.vista.carPanel.setLocation(controlador.vista.carPanel.getX() - (2 * Vista.reescalador), controlador.vista.carPanel.getY());
+            		if (estadoGiro<16) estadoGiro++;
+            	}
+            	else if (velocidadTurbo>1 ||estadoGiro==16) controlador.vista.carPanel.setLocation(controlador.vista.carPanel.getX() - (3 * Vista.reescalador), controlador.vista.carPanel.getY());
+            	else controlador.vista.carPanel.setLocation(controlador.vista.carPanel.getX() - (3 * Vista.reescalador), controlador.vista.carPanel.getY());
             }
                 
             if (controlador.vista.carPanel.isGirandoDerecha()&&controlador.vista.carPanel.getVelocidad()>0) {
-            	if (velocidadTurbo>3) controlador.vista.carPanel.setLocation(controlador.vista.carPanel.getX() + (1 * Vista.reescalador),
-                        controlador.vista.carPanel.getY());
-            	else if (velocidadTurbo>2) controlador.vista.carPanel.setLocation(controlador.vista.carPanel.getX() + (2 * Vista.reescalador),
-                        controlador.vista.carPanel.getY());
-            	else if (velocidadTurbo>1) controlador.vista.carPanel.setLocation(controlador.vista.carPanel.getX() + (3 * Vista.reescalador),
-                        controlador.vista.carPanel.getY());
-            	else controlador.vista.carPanel.setLocation(controlador.vista.carPanel.getX() + (3 * Vista.reescalador),
-                        controlador.vista.carPanel.getY());
+            	if (velocidadTurbo>3||(estadoGiro>=0&&estadoGiro<8)) {
+            		controlador.vista.carPanel.setLocation(controlador.vista.carPanel.getX() + (1 * Vista.reescalador), controlador.vista.carPanel.getY());
+            		if (estadoGiro<8)estadoGiro++;
+            	}
+                        
+            	else if (velocidadTurbo>2||(estadoGiro>=8&&estadoGiro<16)) {
+            		controlador.vista.carPanel.setLocation(controlador.vista.carPanel.getX() + (2 * Vista.reescalador), controlador.vista.carPanel.getY());
+            		if (estadoGiro<16)estadoGiro++;
+            	}
+                        
+            	else if (velocidadTurbo>1 ||estadoGiro==16) controlador.vista.carPanel.setLocation(controlador.vista.carPanel.getX() + (3 * Vista.reescalador), controlador.vista.carPanel.getY());
+            	else controlador.vista.carPanel.setLocation(controlador.vista.carPanel.getX() + (3 * Vista.reescalador), controlador.vista.carPanel.getY());
             }
             if (controlador.vista.carPanel.isAcelerando()) {
             	
@@ -214,7 +200,10 @@ public class HiloJuego implements Runnable {
             		else if(velocidadGUI<10)velocidadGUI=0;
                 	controlador.vista.carPanel.setVelocidad(controlador.vista.carPanel.getVelocidad()-1);
                 	}
+            	
             	controlador.vista.pathPanel.moverCamino(nCamino);
+            	
+            	if (velocidadTurbo>0&&velocidadHilo%4==0)velocidadTurbo--;
             	
             	if(!(velocidadGUI==0&&(velocidadHilo%1==0))&&controlador.vista.carPanel.getVelocidad()>0) {
             	
@@ -273,7 +262,7 @@ public class HiloJuego implements Runnable {
             	controlador.vista.turbo.pulsar(true);
             	if (velocidadTurbo<6&&velocidadHilo%2==0)velocidadTurbo++;
             }
-            else if (!controlador.vista.carPanel.isTurbo()&&velocidadGUI==220) {
+            else if (!controlador.vista.carPanel.isTurbo()&&velocidadGUI<=220) {
             	controlador.vista.max.setVisible(false);
             	//controlador.vista.turbo.encender(true);
             	if (velocidadTurbo>0&&velocidadHilo%2==0)velocidadTurbo--;

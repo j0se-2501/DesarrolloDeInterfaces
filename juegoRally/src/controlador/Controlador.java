@@ -6,8 +6,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import com.github.strikerx3.jxinput.XInputAxes;
+import com.github.strikerx3.jxinput.XInputAxesDelta;
 import com.github.strikerx3.jxinput.XInputButtons;
 import com.github.strikerx3.jxinput.XInputComponents;
+import com.github.strikerx3.jxinput.XInputComponentsDelta;
 import com.github.strikerx3.jxinput.XInputDevice;
 import com.github.strikerx3.jxinput.enums.XInputButton;
 import com.github.strikerx3.jxinput.exceptions.XInputNotLoadedException;
@@ -22,9 +24,14 @@ public class Controlador implements ActionListener, KeyListener, XInputDeviceLis
     Vista vista;
     XInputDevice device;
     XInputDevice[] devices;
-    XInputComponents components;
     XInputButtons buttons;
     XInputAxes axes;
+    XInputComponents components;
+    XInputAxes axesComponents;
+    boolean teclado=false;
+    XInputComponentsDelta delta;
+    XInputAxesDelta axesDelta;
+    float giroDelta;
     /**
      * EL MÉTODO CONSTRUCTOR RECIBIRÁ POR PARÁMETRO UN
      * OBJETO DE TIPO PINTAR VENTANA Y A ESTE OBJETO
@@ -68,9 +75,11 @@ public class Controlador implements ActionListener, KeyListener, XInputDeviceLis
     public void keyReleased(KeyEvent e) {
         if (e.getKeyChar() == 'A' || e.getKeyChar() == 'a') {
         	vista.carPanel.detenerIzquierda();
+        	HiloJuego.estadoGiro=0;
         }
         if (e.getKeyChar() == 'D' || e.getKeyChar() == 'd') {
         	vista.carPanel.detenerDerecha();
+        	HiloJuego.estadoGiro=0;
         }
         if (e.getKeyChar() == 'W' || e.getKeyChar() == 'w') {
         	HiloJuego.velocidadHilo=0;
@@ -103,6 +112,7 @@ public class Controlador implements ActionListener, KeyListener, XInputDeviceLis
     	if (e.getKeyChar() == 'V' || e.getKeyChar() == 'v') {
     		if (HiloJuego.velocidadGUI==220) vista.carPanel.ponerTurbo();
     	}
+    	teclado=true;
 		
     }
     
@@ -127,6 +137,7 @@ public class Controlador implements ActionListener, KeyListener, XInputDeviceLis
     	if (button == XInputButton.A&&pressed==true) vista.carPanel.frenar();
     	else if (button == XInputButton.A&&pressed==false) vista.carPanel.dejarDeFrenar();
     	//else if (button == XInputAxes.get()
+    	teclado=false;
     }
 
     public void mando() {
@@ -142,8 +153,9 @@ public class Controlador implements ActionListener, KeyListener, XInputDeviceLis
             components = device.getComponents();
 
             buttons = components.getButtons();
-            axes = components.getAxes();
-
+            axesComponents = components.getAxes();
+            
+            
             // Buttons and axes have public fields (although this is not idiomatic Java)
 
             device.addListener(this);   
@@ -159,7 +171,38 @@ public class Controlador implements ActionListener, KeyListener, XInputDeviceLis
     }
 
 
-   
+   public void controlesMando2() {
+	   
+	   teclado=false;
+	   delta = device.getDelta();
+       axesDelta = delta.getAxes();
+       giroDelta = axesDelta.getLXDelta();
+	   if (axesComponents.rt>0) {
+	    	if (HiloJuego.velocidadGUI==220) vista.carPanel.ponerTurbo();
+	    }if (axesComponents.rt<=0) {
+	    	vista.carPanel.quitarTurbo();
+   		if(HiloJuego.velocidadGUI==220&&!vista.carPanel.isFrenando()) {
+   		vista.turbo.encender(true);
+   		//controlador.vista.velocimetroSpeed.turbo(false);
+   		}
+	    }
+	    if (axesComponents.lx<=-0.70&&axesComponents.lx>=-1.0) {
+	    	if (giroDelta!=0.0) HiloJuego.estadoGiro=0;
+	    	vista.carPanel.girarIzquierda();
+	    	vista.carPanel.detenerDerecha();
+	    }
+	    if (axesComponents.lx>=0.70&&axesComponents.lx<=1.0) {
+	    	if (giroDelta!=0.0) HiloJuego.estadoGiro=0;
+	    	vista.carPanel.girarDerecha();
+	    	vista.carPanel.detenerIzquierda();
+	    }
+	    if (axesComponents.lx>-0.70&&axesComponents.lx<0.70) {
+	    	vista.carPanel.detenerIzquierda();
+	    	vista.carPanel.detenerDerecha();
+	    	HiloJuego.estadoGiro=0;
+	    }
+	   
+   }
 		
 		
 	
