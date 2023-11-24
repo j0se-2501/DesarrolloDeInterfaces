@@ -1,10 +1,15 @@
 package vista;
 
 import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
 
-import javax.swing.ImageIcon;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
@@ -21,7 +26,7 @@ import sprites.Camino;
 
 public class Vista extends JFrame {
 	
-	public static int reescalador=3;
+	public static int reescalador=4;
 	
 	// Creamos una lámina para colocar encima del JFrame
     public JPanel lienzo = new JPanel();
@@ -151,6 +156,14 @@ public class Vista extends JFrame {
         * QUE ES LLAMADO DESDE EL CONSTRUCTOR DE ESTA CLASE
         */
         private void ejecutar() {
+        	try {
+    	        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("src/sfx/carMusic66.wav").getAbsoluteFile());
+    	        Clip clip = AudioSystem.getClip();
+    	        clip.open(audioInputStream);
+    	        clip.loop(Clip.LOOP_CONTINUOUSLY);
+    	       } catch(UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+    	         System.out.println("Error al reproducir el sonido.");
+    	       }
             ejecutarAcciones = new Controlador(this);
             ejecutarAcciones.escucharEventos();
             ejecutarAcciones.mando();

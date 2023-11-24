@@ -4,6 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import com.github.strikerx3.jxinput.XInputAxes;
 import com.github.strikerx3.jxinput.XInputAxesDelta;
@@ -32,6 +40,8 @@ public class Controlador implements ActionListener, KeyListener, XInputDeviceLis
     XInputComponentsDelta delta;
     XInputAxesDelta axesDelta;
     float giroDelta;
+    Clip clip;
+    AudioInputStream audioInputStream;
     /**
      * EL MÉTODO CONSTRUCTOR RECIBIRÁ POR PARÁMETRO UN
      * OBJETO DE TIPO PINTAR VENTANA Y A ESTE OBJETO
@@ -43,6 +53,21 @@ public class Controlador implements ActionListener, KeyListener, XInputDeviceLis
         // y el cual se le esta pasando por parámetro
         // en el constructor de esta clase
         this.vista=vista;
+        try {
+    		
+        	//clip = AudioSystem.getClip();
+        	
+        	if (HiloJuego.velocidadGUI>=0&&HiloJuego.velocidadGUI%2==0) audioInputStream = AudioSystem.getAudioInputStream(new File("src/sfx/carEngine"+HiloJuego.velocidadGUI/4+".wav").getAbsoluteFile());
+			clip = AudioSystem.getClip();
+	        clip.open(audioInputStream);
+	       
+			
+			
+        	} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	
     }
     
     

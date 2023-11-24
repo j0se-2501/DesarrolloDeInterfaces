@@ -1,11 +1,9 @@
 package sprites;
 
-import java.awt.Graphics;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import vista.Vista;
 
@@ -22,6 +20,8 @@ public class Camino extends JLabel {
 			String rutaSprite="/spritillos/camino0.png";
 			ImageIcon originalIcon;
 			Image image;
+			Arbol[] arbolesLeft = new Arbol[20];
+			Arbol[] arbolesRight = new Arbol[20];
 			
 			// Definir el número total de imágenes que tienes
 		    public static final int NUM_IMAGENES = 8;
@@ -40,6 +40,19 @@ public class Camino extends JLabel {
 		    	  // transform it back
 		    	this.setIcon(caminoImageIcons[0]);
 		    	//this.setBounds(((vista.ANCHURA_JUEGO/2)-(this.ANCHURA_SPRITE/2)), vista.ALTURA_JUEGO-this.ALTURA_SPRITE, this.ANCHURA_SPRITE, this.ALTURA_SPRITE);
+		    	
+		    	for(int i= 0; i<20; i++) {
+		    		arbolesLeft[i]=new Arbol();
+		    		arbolesLeft[i].ALTURA_SPRITE=(arbolesLeft[i].ALTURA_SPRITE/i)*Vista.reescalador;
+		    		arbolesLeft[i].ANCHURA_SPRITE=(arbolesLeft[i].ANCHURA_SPRITE/i)*Vista.reescalador;
+		    		arbolesLeft[i].imageIcon = (new ImageIcon(getClass().getResource(rutaSprite)));
+		    		arbolesLeft[i].image = arbolesLeft[i].imageIcon.getImage(); // transform it 
+		    		arbolesLeft[i].newimg = image.getScaledInstance(ANCHURA_SPRITE, ALTURA_SPRITE,  java.awt.Image.SCALE_FAST); // scale it the smooth way  
+		    		arbolesLeft[i].imageIcon = new ImageIcon(arbolesLeft[i].newimg);  // transform it back
+		        	this.setIcon(arbolesLeft[i].imageIcon);
+		        	this.setBounds(0, 0, ANCHURA_SPRITE, ALTURA_SPRITE);
+		    	}
+		    	
 		    }
 
 			public void moverCamino (int numeroSprite) {
