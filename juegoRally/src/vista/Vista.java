@@ -3,6 +3,7 @@ package vista;
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -22,16 +23,17 @@ import sprites.FontNumbers;
 import sprites.FontSpeed;
 import sprites.Max;
 import sprites.Turbo;
+import sprites.Arbol;
 import sprites.Camino;
 
 public class Vista extends JFrame {
 	
-	public static int reescalador=4;
+	public static int reescalador=3;
 	
 	// Creamos una lámina para colocar encima del JFrame
     public JPanel lienzo = new JPanel();
     public JPanel juego = new JPanel();
-    public Camino pathPanel = new Camino();
+    public Camino pathPanel = new Camino(this);
     public Car carPanel = new Car();
     public Cielo skyPanel = new Cielo();
     public Fondo backgroundPanel = new Fondo();
@@ -42,6 +44,10 @@ public class Vista extends JFrame {
     public FontNumbers[] velocimetroDigitos = {velocimetro1, velocimetro2, velocimetro3};
     public Turbo turbo = new Turbo();
     public Max max = new Max();
+    public Arbol arbolLeft0, arbolLeft1, arbolLeft2, arbolLeft3, arbolLeft4, arbolLeft5,arbolLeft6, arbolLeft7,arbolLeft8, arbolLeft9,
+    			 arbolLeft10, arbolLeft11, arbolLeft12, arbolLeft13, arbolLeft14, arbolLeft15,arbolLeft16, arbolLeft17,arbolLeft18, arbolLeft19;
+    public ArrayList <Arbol> listaArbolesLeft = new ArrayList<Arbol>();
+    public ArrayList <Arbol> listaArbolesRight = new ArrayList<Arbol>();
     
     
     public final static int ANCHURA_JUEGO=320*reescalador;
@@ -91,6 +97,180 @@ public class Vista extends JFrame {
     	 juego.add(pathPanel);
     	 
      }
+     
+private void configurarArboles() {
+		
+	// Primer conjunto
+	arbolLeft0 = new Arbol(0, this);
+	arbolLeft0.setLayout(null);
+	arbolLeft0.setBounds(10*reescalador, 110*reescalador, arbolLeft0.ANCHURA_SPRITE, arbolLeft0.ALTURA_SPRITE);
+	arbolLeft0.setVisible(false);
+
+	listaArbolesLeft.add(arbolLeft0);
+
+	arbolLeft1 = new Arbol(12, this);
+	arbolLeft1.setLayout(null);
+	arbolLeft1.setBounds(71*reescalador, 121*reescalador, arbolLeft1.ANCHURA_SPRITE, arbolLeft1.ALTURA_SPRITE);
+	arbolLeft1.setVisible(false);
+	
+	listaArbolesLeft.add(arbolLeft1);
+
+	arbolLeft2 = new Arbol(17, this);
+	arbolLeft2.setLayout(null);
+	arbolLeft2.setBounds(108*reescalador, 133*reescalador, arbolLeft2.ANCHURA_SPRITE, arbolLeft2.ALTURA_SPRITE);
+	arbolLeft2.setVisible(false);
+	
+	listaArbolesLeft.add(arbolLeft2);
+
+	arbolLeft3 = new Arbol(19, this);
+	arbolLeft3.setLayout(null);
+	arbolLeft3.setBounds(130*reescalador, 135*reescalador, arbolLeft3.ANCHURA_SPRITE, arbolLeft3.ALTURA_SPRITE);
+	arbolLeft3.setVisible(false);
+	
+	listaArbolesLeft.add(arbolLeft3);
+
+	arbolLeft4 = new Arbol(22, this);
+	arbolLeft4.setLayout(null);
+	arbolLeft4.setBounds(146*reescalador, 135*reescalador, arbolLeft4.ANCHURA_SPRITE, arbolLeft4.ALTURA_SPRITE);
+	arbolLeft4.setVisible(false);
+	
+	listaArbolesLeft.add(arbolLeft4);
+
+	//////////////////////////////////
+
+	// Segundo conjunto
+	arbolLeft5 = new Arbol(0, this);
+	arbolLeft5.setLayout(null);
+	arbolLeft5.setBounds(-7*reescalador, 118*reescalador, arbolLeft5.ANCHURA_SPRITE, arbolLeft5.ALTURA_SPRITE);
+	arbolLeft5.setVisible(false);
+	
+	listaArbolesLeft.add(arbolLeft5);
+
+	arbolLeft6 = new Arbol(9, this);
+	arbolLeft6.setLayout(null);
+	arbolLeft6.setBounds(55*reescalador, 117*reescalador, arbolLeft6.ANCHURA_SPRITE, arbolLeft6.ALTURA_SPRITE);
+	arbolLeft6.setVisible(false);
+	
+	listaArbolesLeft.add(arbolLeft6);
+
+	arbolLeft7 = new Arbol(16, this);
+	arbolLeft7.setLayout(null);
+	arbolLeft7.setBounds(97*reescalador, 121*reescalador, arbolLeft7.ANCHURA_SPRITE, arbolLeft7.ALTURA_SPRITE);
+	arbolLeft7.setVisible(false);
+	
+	listaArbolesLeft.add(arbolLeft7);
+
+	arbolLeft8 = new Arbol(18, this);
+	arbolLeft8.setLayout(null);
+	arbolLeft8.setBounds(126*reescalador, 132*reescalador, arbolLeft8.ANCHURA_SPRITE, arbolLeft8.ALTURA_SPRITE);
+	arbolLeft8.setVisible(false);
+	
+	listaArbolesLeft.add(arbolLeft8);
+
+	arbolLeft9 = new Arbol(21, this);
+	arbolLeft9.setLayout(null);
+	arbolLeft9.setBounds(144*reescalador, 135*reescalador, arbolLeft9.ANCHURA_SPRITE, arbolLeft9.ALTURA_SPRITE);
+	arbolLeft9.setVisible(false);
+	
+	listaArbolesLeft.add(arbolLeft9);
+
+	//////////////////////////////////
+
+	// Tercer conjunto
+	arbolLeft10 = new Arbol(0, this);
+	arbolLeft10.setLayout(null);
+	arbolLeft10.setBounds(-24*reescalador, 126*reescalador, arbolLeft10.ANCHURA_SPRITE, arbolLeft10.ALTURA_SPRITE);
+	arbolLeft10.setVisible(false);
+	
+	listaArbolesLeft.add(arbolLeft10);
+
+	arbolLeft11 = new Arbol(6, this);
+	arbolLeft11.setLayout(null);
+	arbolLeft11.setBounds(39*reescalador, 115*reescalador, arbolLeft11.ANCHURA_SPRITE, arbolLeft11.ALTURA_SPRITE);
+	arbolLeft11.setVisible(false);
+	
+	listaArbolesLeft.add(arbolLeft11);
+
+	arbolLeft12 = new Arbol(16, this);
+	arbolLeft12.setLayout(null);
+	arbolLeft12.setBounds(91*reescalador, 124*reescalador, arbolLeft12.ANCHURA_SPRITE, arbolLeft12.ALTURA_SPRITE);
+	arbolLeft12.setVisible(false);
+	
+	listaArbolesLeft.add(arbolLeft12);
+
+	arbolLeft13 = new Arbol(18, this);
+	arbolLeft13.setLayout(null);
+	arbolLeft13.setBounds(124*reescalador, 133*reescalador, arbolLeft13.ANCHURA_SPRITE, arbolLeft13.ALTURA_SPRITE);
+	arbolLeft13.setVisible(false);
+	
+	listaArbolesLeft.add(arbolLeft13);
+
+	arbolLeft14 = new Arbol(20, this);
+	arbolLeft14.setLayout(null);
+	arbolLeft14.setBounds(141*reescalador, 134*reescalador, arbolLeft14.ANCHURA_SPRITE, arbolLeft14.ALTURA_SPRITE);
+	arbolLeft14.setVisible(false);
+	
+	listaArbolesLeft.add(arbolLeft14);
+
+	///////////////////////////////////
+
+	// Cuarto conjunto
+	arbolLeft15 = new Arbol(0, this);
+	arbolLeft15.setLayout(null);
+	arbolLeft15.setBounds(-41*reescalador, 138*reescalador, arbolLeft15.ANCHURA_SPRITE, arbolLeft15.ALTURA_SPRITE);
+	arbolLeft15.setVisible(false);
+	
+	listaArbolesLeft.add(arbolLeft15);
+
+	arbolLeft16 = new Arbol(3, this);
+	arbolLeft16.setLayout(null);
+	arbolLeft16.setBounds(16*reescalador, 117*reescalador, arbolLeft16.ANCHURA_SPRITE, arbolLeft16.ALTURA_SPRITE);
+	arbolLeft16.setVisible(false);
+	
+	listaArbolesLeft.add(arbolLeft16);
+
+	arbolLeft17 = new Arbol(15, this);
+	arbolLeft17.setLayout(null);
+	arbolLeft17.setBounds(82*reescalador, 123*reescalador, arbolLeft17.ANCHURA_SPRITE, arbolLeft17.ALTURA_SPRITE);
+	arbolLeft17.setVisible(false);
+	
+	listaArbolesLeft.add(arbolLeft17);
+
+	arbolLeft18 = new Arbol(17, this);
+	arbolLeft18.setLayout(null);
+	arbolLeft18.setBounds(118*reescalador, 128*reescalador, arbolLeft18.ANCHURA_SPRITE, arbolLeft18.ALTURA_SPRITE);
+	arbolLeft18.setVisible(false);
+	
+	listaArbolesLeft.add(arbolLeft18);
+
+	arbolLeft19 = new Arbol(19, this);
+	arbolLeft19.setLayout(null);
+	arbolLeft19.setBounds(140*reescalador, 132*reescalador, arbolLeft19.ANCHURA_SPRITE, arbolLeft19.ALTURA_SPRITE);
+	arbolLeft19.setVisible(false);
+	
+	listaArbolesLeft.add(arbolLeft19);
+	
+	juego.add(arbolLeft19);
+	juego.add(arbolLeft18);
+	juego.add(arbolLeft17);
+	juego.add(arbolLeft16);
+	juego.add(arbolLeft15);
+	juego.add(arbolLeft14);
+	juego.add(arbolLeft13);
+	juego.add(arbolLeft12);
+	juego.add(arbolLeft11);
+	juego.add(arbolLeft10);
+	juego.add(arbolLeft9);
+	juego.add(arbolLeft8);
+	juego.add(arbolLeft7);
+	juego.add(arbolLeft6);
+	juego.add(arbolLeft5);
+	juego.add(arbolLeft4);
+	juego.add(arbolLeft3);
+	juego.add(arbolLeft2);
+	juego.add(arbolLeft1);
+	juego.add(arbolLeft0);
+}
      
      private void configurarCoche() {
     	 
@@ -201,6 +381,7 @@ public class Vista extends JFrame {
             
             configurarJuego();
             configurarHUD();
+            configurarArboles();
             configurarFondo();
             configurarCoche();
             configurarCamino();
