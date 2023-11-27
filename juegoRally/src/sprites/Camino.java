@@ -39,7 +39,7 @@ public class Camino extends JLabel {
 		        }
 				//Vista vista = new Vista();
 		    	  // transform it back
-		    	this.setIcon(caminoImageIcons[0]);
+		    	this.setIcon(caminoImageIcons[3]);
 		    	//this.setBounds(((vista.ANCHURA_JUEGO/2)-(this.ANCHURA_SPRITE/2)), vista.ALTURA_JUEGO-this.ALTURA_SPRITE, this.ANCHURA_SPRITE, this.ALTURA_SPRITE);
 		    	
 		    }

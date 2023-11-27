@@ -169,7 +169,8 @@ public class HiloJuego implements Runnable {
             if (controlador.vista.carPanel.isAcelerando()) {
             	
                 controlador.vista.pathPanel.moverCamino(nCamino);
-                //controlador.vista.arbolLeft0.moverArboles(nCamino);
+                controlador.vista.arbolLeft0.moverArbolesLeft(nCamino);
+                controlador.vista.arbolLeft0.moverArbolesRight(nCamino);
                 nCamino++;
                 if (nCamino == 8)
                     nCamino = 0;
@@ -236,7 +237,8 @@ public class HiloJuego implements Runnable {
                 	}
             	
             	controlador.vista.pathPanel.moverCamino(nCamino);
-            	//controlador.vista.arbolLeft0.moverArboles(nCamino);
+            	controlador.vista.arbolLeft0.moverArbolesLeft(nCamino);
+            	controlador.vista.arbolLeft0.moverArbolesRight(nCamino);
             	
             	if (velocidadTurbo>0&&velocidadHilo%4==0)velocidadTurbo--;
             	
@@ -288,7 +290,8 @@ public class HiloJuego implements Runnable {
                 	}
             	
             	 controlador.vista.pathPanel.moverCamino(nCamino);
-            	 //controlador.vista.arbolLeft0.moverArboles(nCamino);
+            	 controlador.vista.arbolLeft0.moverArbolesLeft(nCamino);
+            	 controlador.vista.arbolLeft0.moverArbolesRight(nCamino);
             }
             
             //TURBO

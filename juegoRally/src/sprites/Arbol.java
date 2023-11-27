@@ -13,7 +13,8 @@ public class Arbol extends JLabel {
 	public int ALTURA_SPRITE =88*Vista.reescalador;
 	
 	int numeroSprite=0;
-	String rutaSprite="/spritillos/arbolLeft"+numeroSprite+".png";
+	String rutaSpriteLeft="/spritillos/arbolLeft"+numeroSprite+".png";
+	String rutaSpriteRight="/spritillos/arbolRight"+numeroSprite+".png";
 	ImageIcon originalIcon;
 	Image image;
 	ImageIcon imageIcon;
@@ -81,15 +82,16 @@ public class Arbol extends JLabel {
 	    	this.ALTURA_SPRITE =88*Vista.reescalador;
 	  }
 		
-		this.rutaSprite="/spritillos/arbolLeft"+this.numeroSprite+".png";
-    	this.imageIcon = (new ImageIcon(getClass().getResource(rutaSprite)));
+		this.rutaSpriteLeft="/spritillos/arbolLeft"+this.numeroSprite+".png";
+		this.rutaSpriteRight="/spritillos/arbolRight"+this.numeroSprite+".png";
+    	this.imageIcon = (new ImageIcon(getClass().getResource(rutaSpriteLeft)));
     	this.image = this.imageIcon.getImage(); // transform it 
     	this.newimg = this.image.getScaledInstance(this.ANCHURA_SPRITE, this.ALTURA_SPRITE,  java.awt.Image.SCALE_FAST); // scale it the smooth way  
     	this.imageIcon = new ImageIcon(this.newimg);  // transform it back
     	this.setIcon(imageIcon);
     }
 	
-	public void moverArboles(int numeroSprite) {
+	public void moverArbolesLeft (int numeroSprite) {
 		switch(numeroSprite) {
 	       case 0:
 	    	   for (int i = 0; i<20; i++) {
@@ -152,5 +154,59 @@ public class Arbol extends JLabel {
 	    	   break;
 	       }
 	}
+	
+	public void moverArbolesRight(int numeroSprite) {
+	    switch (numeroSprite) {
+	        case 0:
+	            for (int i = 0; i < 20; i++) {
+	                if (i > -1 && i < 5) vista.listaArbolesRight.get(i).setVisible(true);
+	                else vista.listaArbolesRight.get(i).setVisible(false);
+	            }
+	            break;
+	        case 1:
+	            for (int i = 0; i < 20; i++) {
+	                if (i > 4 && i < 10) vista.listaArbolesRight.get(i).setVisible(true);
+	                else vista.listaArbolesRight.get(i).setVisible(false);
+	            }
+	            break;
+	        case 2:
+	            for (int i = 0; i < 20; i++) {
+	                if (i > 9 && i < 15) vista.listaArbolesRight.get(i).setVisible(true);
+	                else vista.listaArbolesRight.get(i).setVisible(false);
+	            }
+	            break;
+	        case 3:
+	            for (int i = 0; i < 20; i++) {
+	                if (i > 14 && i < 20) vista.listaArbolesRight.get(i).setVisible(true);
+	                else vista.listaArbolesRight.get(i).setVisible(false);
+	            }
+	            break;
+	        case 4:
+	            for (int i = 0; i < 20; i++) {
+	                if (i > -1 && i < 5) vista.listaArbolesRight.get(i).setVisible(true);
+	                else vista.listaArbolesRight.get(i).setVisible(false);
+	            }
+	            break;
+	        case 5:
+	            for (int i = 0; i < 20; i++) {
+	                if (i > 4 && i < 10) vista.listaArbolesRight.get(i).setVisible(true);
+	                else vista.listaArbolesRight.get(i).setVisible(false);
+	            }
+	            break;
+	        case 6:
+	            for (int i = 0; i < 20; i++) {
+	                if (i > 9 && i < 15) vista.listaArbolesRight.get(i).setVisible(true);
+	                else vista.listaArbolesRight.get(i).setVisible(false);
+	            }
+	            break;
+	        case 7:
+	            for (int i = 0; i < 20; i++) {
+	                if (i > 14 && i < 20) vista.listaArbolesRight.get(i).setVisible(true);
+	                else vista.listaArbolesRight.get(i).setVisible(false);
+	            }
+	            break;
+	    }
+	}
+
 	
 }
