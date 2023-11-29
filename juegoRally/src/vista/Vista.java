@@ -552,9 +552,10 @@ private void configurarArboles() {
             
             configurarJuego();
             configurarHUD();
+            configurarCoche();
             configurarArboles();
             configurarFondo();
-            configurarCoche();
+            
             configurarCamino();
             configurarCielo();
             
