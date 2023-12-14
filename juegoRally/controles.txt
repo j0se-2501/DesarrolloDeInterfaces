@@ -1,0 +1,5 @@
+controles:
+
+A;W;S;D; V (turbo)
+
+A,B,joystick izquierdo, RT (turbo)
