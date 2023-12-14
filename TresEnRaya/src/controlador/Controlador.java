@@ -1,17 +1,21 @@
 package controlador;
 
+import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URI;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 
 import vista.Vista;
 
-public class Controlador implements ActionListener {
+public class Controlador implements ActionListener, MenuListener {
 	
 	// Creamos una variable de tipo PintarVentana
     Vista vista;
@@ -59,7 +63,8 @@ public class Controlador implements ActionListener {
     	vista.itemGuardar.addActionListener(this);
     	vista.itemCargar.addActionListener(this);
     	vista.itemAyuda.addActionListener(this);
-        
+    	vista.menuJuego.addMenuListener(this);
+    	vista.menuSecreto.addMenuListener(this);
     }
      
     /**
@@ -72,9 +77,9 @@ public class Controlador implements ActionListener {
     	if(e.getSource().equals(vista.itemGuardar)) guardarEstado();
     	if(e.getSource().equals(vista.itemCargar)) cargarEstado();
     	if(e.getSource().equals(vista.itemAyuda)) ayuda();
-    	if(e.getSource().equals(vista.menuSecreto)) {
+    	if(e.getSource().equals(vista.menuJuego)) {
     		contadorSecreto++;
-    		//if (contadorSecreto==5) rickRoll();
+    		if (contadorSecreto==10) vista.menuSecreto.setVisible(true);
     	}
           
         if(e.getSource().equals(vista.botonera.arrayBotones[0])) {
@@ -389,12 +394,46 @@ public class Controlador implements ActionListener {
                 + "P: ¿Por qué existe esto si el tres en raya es una ba-\n"
                 + "R: No me daba tiempo de hacer el ejercicio del ajedrez LULE.\n\n"
                 + "P: Ahora en serio. ¿Hay algo que deba saber?\n"
-                + "R: Haga click cinco veces en el extremo derecho del menú superior para revelar un secreto.";
+                + "R: Pulsa varias veces sobre el menú de opciones para revelar un secreto.";
 
         // Mostrar el JOptionPane de ayuda con un botón "Entendido"
         JOptionPane.showMessageDialog(null, mensaje, "Ayuda", JOptionPane.PLAIN_MESSAGE);
 
         // Puedes agregar más lógica aquí según tus necesidades
     }
+
+	@Override
+	public void menuSelected(MenuEvent e) {
+		if (e.getSource().equals(vista.menuJuego)) {
+            contadorSecreto++;
+            if (contadorSecreto == 10) {
+                vista.menuSecreto.setVisible(true);
+            }
+        }
+		if (e.getSource().equals(vista.menuSecreto)) {
+			try {
+	            // Especificar la URL que deseas abrir en el navegador
+	            URI uri = new URI("https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley");
+
+	            // Abrir la URL en el navegador web predeterminado
+	            Desktop.getDesktop().browse(uri);
+	        } catch (Exception ex) {
+	            ex.printStackTrace();
+	        }
+        }
+		
+	}
+
+	@Override
+	public void menuDeselected(MenuEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void menuCanceled(MenuEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
