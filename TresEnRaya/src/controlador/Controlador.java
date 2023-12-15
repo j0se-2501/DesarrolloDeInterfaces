@@ -15,45 +15,59 @@ import javax.swing.event.MenuListener;
 
 import vista.Vista;
 
+/**La clase Controlador maneja la lógica del juego.*/
+
 public class Controlador implements ActionListener, MenuListener {
 	
 	// Creamos una variable de tipo PintarVentana
     Vista vista;
+    /**si juega la cpu*/
     boolean cpu = false;
+    /**si hay jugador 2*/
     boolean jugador2 = false;
+    /**si la cpu juega primero*/
     boolean cpuPrimera = false;
+    /**si es el turno de la X*/
     boolean turnoX=true;
+    /**si la casilla está vacía*/
     boolean casillaVacia=true;
+    /**si hay un estado guardado*/
     boolean estadoGuardado=false;
+    /**si es el turno guardado*/
     boolean turnoGuardado=true;
+    /**casillas que se quedan guardadas*/
     String[] saveState = new String[9];
+    /**contador para un secreto*/
     int contadorSecreto=0;
+    /**si hay cpu en la partida guardada*/
     boolean cpuGuardada;
+    /**si la cpu juega primero en la partida guardada*/
 	boolean cpuPrimeraGuardada;
+	/**si hay jugador 2 en la partida guardada*/
 	boolean jugador2Guardado;
+	/**si la partida ha terminado*/
 	boolean haTerminado=false;
+	/**letra de la cpu*/
 	String letraCPU="O";
+	/**letra del jugador vs la cpu*/
 	String letraHumano="X";
 
     
     
-        /**
-     * EL MÉTODO CONSTRUCTOR RECIBIRÁ POR PARÁMETRO UN
-     * OBJETO DE TIPO PINTAR VENTANA Y A ESTE OBJETO
+     /**
+     * Recibe la vista con la que trabaja el controlador
      */
      
-    public Controlador(Vista vDesactivar) {
+    public Controlador(Vista vista) {
         // A La variable vista se le asignara
         // un objeto de la clase  llamado vDesactivar
         // y el cual se le esta pasando por parámetro
         // en el constructor de esta clase
-        this.vista=vDesactivar;
+        this.vista=vista;
     }
      
     /**
-     * ESTE MÉTODO PONE A LA ESCUCHA DE LOS EVENTOS
-     * DE CLIC DE RATON A CADA UNO DE LOS BOTONES
-     * DE LA VENTANA CREADA EN EL PAQUETE VISTA
+     * listeners de los clicks del ratón 
      */
     public void escucharEventos() {
          
@@ -71,7 +85,7 @@ public class Controlador implements ActionListener, MenuListener {
     }
      
     /**
-     * ESTE MÉTODO SE ENCARGA DE EJECUTAR LAS ACCIONES
+     * acciones tras hacerse click
      * 
      */
     public void actionPerformed(ActionEvent e) {
@@ -203,6 +217,8 @@ public class Controlador implements ActionListener, MenuListener {
         }
     }
     
+    /**método que llama a la cpu para que juegue*/
+    
     public void jugarCPU() {
         if (cpuPrimera) {
         	letraCPU = "X";
@@ -234,6 +250,8 @@ public class Controlador implements ActionListener, MenuListener {
             }
         }
     }
+    
+    /**inteligencia de la CPU. Funciona bien cuando empieza moviendo el jugador. Proporcionado y modificado desde ChatGPT*/
     
     private int[] minimax(int profundidad, String jugador) {
         int mejorPuntaje = (jugador.equals(letraCPU)) ? Integer.MIN_VALUE : Integer.MAX_VALUE;
@@ -268,6 +286,8 @@ public class Controlador implements ActionListener, MenuListener {
         return new int[]{mejorPuntaje, mejorMovimiento};
     }
     
+    
+    /**continuación del algoritmo minimax*/
     private int evaluarTablero() {
         if (esGanador("X")) {
             return -1;
@@ -278,6 +298,7 @@ public class Controlador implements ActionListener, MenuListener {
         }
     }
     
+    /**comprueba si ha terminado la partida llamando a esGanador() y si es así, llama a mostrarResultado()*/
     public boolean esTerminado() {
     	
     	if (cpu) {
@@ -321,6 +342,8 @@ public class Controlador implements ActionListener, MenuListener {
     	
     }
     
+    /**muestra un mensaje por pantalla según el resultado de la partida*/
+    
     public void mostrarResultado(String mensaje) {
     	// Crear un JLabel con el texto centrado
         JLabel label = new JLabel(mensaje, SwingConstants.CENTER);
@@ -345,6 +368,8 @@ public class Controlador implements ActionListener, MenuListener {
         }
       
     }
+    
+    /**comprueba si ha habido un ganador*/
     
     public boolean esGanador(String marca) {
         // Verificar filas
@@ -381,6 +406,8 @@ public class Controlador implements ActionListener, MenuListener {
         return false; // No hay ganador
     }
     
+    /**inicia una nueva partida*/
+    
     public void nuevaPartida() {
     	for (JButton boton : vista.botonera.arrayBotones) {
     		boton.setText("");
@@ -391,10 +418,12 @@ public class Controlador implements ActionListener, MenuListener {
     	opcionesNuevaPartida();
     }
     
+    /**muestra los distintos modos de juego y ajusta las variables según el modo elegido*/
+    
     public void opcionesNuevaPartida() {
     	
     	// Crear opciones de botones
-        Object[] opciones = {"Player 1 VS CPU", "CPU VS Player 2", "Player 1 VS Player 2"};
+        Object[] opciones = {"Player 1 VS CPU (Difícil)", "CPU VS Player 2 (Fácil)", "Player 1 VS Player 2"};
         JLabel label = new JLabel("Seleccione el modo de juego:", SwingConstants.CENTER);
         label.setFont(new Font("Arial", Font.BOLD, 14));
 
@@ -448,6 +477,8 @@ public class Controlador implements ActionListener, MenuListener {
     	
     }
     
+    /**guarda el estado de la partida*/
+    
     public void guardarEstado() {
     	estadoGuardado=true;
     	turnoGuardado=turnoX;
@@ -458,6 +489,8 @@ public class Controlador implements ActionListener, MenuListener {
     			saveState[i]=vista.botonera.arrayBotones[i].getText();
     		}
     }
+    
+    /**carga el estado de la partida*/
     
     public void cargarEstado() {
     	if (!estadoGuardado) {
@@ -475,11 +508,13 @@ public class Controlador implements ActionListener, MenuListener {
 		
     }
     
+    /**muestra el panel de ayuda al jugador*/
+    
     public void ayuda() {
     	String mensaje =
                 "Modos de juego:\n\n" +
-                "· Player 1 VS CPU: juegue contra el ordenador. Empiece moviendo. \n" +
-                "· CPU VS Player 2: responda a las jugadas de la CPU.\n" +
+                "· Player 1 VS CPU: juegue contra el ordenador. Empiece moviendo. Nivel: Difícil \n" +
+                "· CPU VS Player 2: responda a las jugadas de la CPU. Nivel: Fácil\n" +
                 "· Player 1 VS Player 2: diviértase con un amigo.\n\n" +
                 "Cómo jugar:\n\n" +
                 "Pulse una casilla y dibujará su marca.\nConsiga tres en línea vertical, horizontal o diagonalmente para ganar.\n" +
@@ -502,6 +537,9 @@ public class Controlador implements ActionListener, MenuListener {
         // Puedes agregar más lógica aquí según tus necesidades
     }
 
+    
+    /**ejecuta acciones sobre los menús de la barra de menú*/
+    
 	@Override
 	public void menuSelected(MenuEvent e) {
 		if (e.getSource().equals(vista.menuJuego)) {

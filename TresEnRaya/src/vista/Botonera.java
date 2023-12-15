@@ -3,18 +3,26 @@ package vista;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * La clase Botonera representa un panel que contiene una cuadrícula de botones para un juego.
+ */
 public class Botonera extends JPanel {
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public JButton[] arrayBotones = new JButton[9];
+	/** Arreglo que almacena los botones en la botonera. */
+    public JButton[] arrayBotones = new JButton[9];
 
-	public Botonera() {
+    /**
+     * Constructor de la clase Botonera. Inicializa la cuadrícula de botones.
+     */
+    public Botonera() {
+        // Establecer el diseño de la botonera como una cuadrícula de 3x3
         setLayout(new GridLayout(3, 3, -1, -1)); // El último par de parámetros establece el espacio entre los componentes
 
-        // Crear y agregar botones
+        // Crear y agregar botones a la cuadrícula
         for (int i = 0; i < 9; i++) {
             this.arrayBotones[i] = new JButton();
             this.arrayBotones[i].setBackground(Color.WHITE);
@@ -25,7 +33,4 @@ public class Botonera extends JPanel {
             this.add(arrayBotones[i]);
         }
     }
-
-    
 }
-
