@@ -31,6 +31,9 @@ public class Controlador implements ActionListener, MenuListener {
     boolean cpuGuardada;
 	boolean cpuPrimeraGuardada;
 	boolean jugador2Guardado;
+	boolean haTerminado=false;
+	String letraCPU="O";
+	String letraHumano="X";
 
     
     
@@ -82,138 +85,224 @@ public class Controlador implements ActionListener, MenuListener {
     		if (contadorSecreto==10) vista.menuSecreto.setVisible(true);
     	}
           
-        if(e.getSource().equals(vista.botonera.arrayBotones[0])) {
-        	if (cpu && cpuPrimera) jugarCPU();
+        if(e.getSource().equals(vista.botonera.arrayBotones[0])&&vista.botonera.arrayBotones[0].getText().isEmpty()) {
         	
+        	haTerminado=false;
             if (turnoX) vista.botonera.arrayBotones[0].setText("X");
             else if (!turnoX) vista.botonera.arrayBotones[0].setText("O");
-            
+            if (esTerminado()) return;
             if (!cpu && turnoX) turnoX = false;
             else if (!cpu && !turnoX) turnoX = true;
             
-            if (cpu && !cpuPrimera) jugarCPU();
-            esTerminado();
+            if (cpu && !haTerminado) jugarCPU();
+            if (esTerminado()) return;
         }
           
-        else if(e.getSource().equals(vista.botonera.arrayBotones[1])) {
-        	if (cpu && cpuPrimera) jugarCPU();
+        else if(e.getSource().equals(vista.botonera.arrayBotones[1])&&vista.botonera.arrayBotones[1].getText().isEmpty()) {
         	
+        	haTerminado=false;
             if (turnoX) vista.botonera.arrayBotones[1].setText("X");
             else if (!turnoX) vista.botonera.arrayBotones[1].setText("O");
-            
+            if (esTerminado()) return;
             if (!cpu && turnoX) turnoX = false;
             else if (!cpu && !turnoX) turnoX = true;
             
-            if (cpu && !cpuPrimera) jugarCPU();
-            esTerminado();
+            if (cpu && !haTerminado) jugarCPU();
+            if (esTerminado()) return;
         }
           
-        else if(e.getSource().equals(vista.botonera.arrayBotones[2])) {
-        	if (cpu && cpuPrimera) jugarCPU();
+        else if(e.getSource().equals(vista.botonera.arrayBotones[2])&&vista.botonera.arrayBotones[2].getText().isEmpty()) {
         	
+        	haTerminado=false;
             if (turnoX) vista.botonera.arrayBotones[2].setText("X");
             else if (!turnoX) vista.botonera.arrayBotones[2].setText("O");
-            
+            if (esTerminado()) return;
             if (!cpu && turnoX) turnoX = false;
             else if (!cpu && !turnoX) turnoX = true;
             
-            if (cpu && !cpuPrimera) jugarCPU();
-            esTerminado();
+            if (cpu && !haTerminado) jugarCPU();
+            if (esTerminado()) return;
         }
         
-        else if(e.getSource().equals(vista.botonera.arrayBotones[3])) {
-        	if (cpu && cpuPrimera) jugarCPU();
+        else if(e.getSource().equals(vista.botonera.arrayBotones[3])&&vista.botonera.arrayBotones[3].getText().isEmpty()) {
         	
+        	haTerminado=false;
             if (turnoX) vista.botonera.arrayBotones[3].setText("X");
             else if (!turnoX) vista.botonera.arrayBotones[3].setText("O");
-            
+            if (esTerminado()) return;
             if (!cpu && turnoX) turnoX = false;
             else if (!cpu && !turnoX) turnoX = true;
             
-            if (cpu && !cpuPrimera) jugarCPU();
-            esTerminado();
+            if (cpu && !haTerminado) jugarCPU();
+            if (esTerminado()) return;
         }
           
-        else if(e.getSource().equals(vista.botonera.arrayBotones[4])) {
-        	if (cpu && cpuPrimera) jugarCPU();
+        else if(e.getSource().equals(vista.botonera.arrayBotones[4])&&vista.botonera.arrayBotones[4].getText().isEmpty()) {
         	
+        	haTerminado=false;
             if (turnoX) vista.botonera.arrayBotones[4].setText("X");
             else if (!turnoX) vista.botonera.arrayBotones[4].setText("O");
-            
+            if (esTerminado()) return;
             if (!cpu && turnoX) turnoX = false;
             else if (!cpu && !turnoX) turnoX = true;
             
-            if (cpu && !cpuPrimera) jugarCPU();
-            esTerminado();
+            if (cpu && !haTerminado) jugarCPU();
+            if (esTerminado()) return;
         }
           
-        else if(e.getSource().equals(vista.botonera.arrayBotones[5])) {
-        	if (cpu && cpuPrimera) jugarCPU();
+        else if(e.getSource().equals(vista.botonera.arrayBotones[5])&&vista.botonera.arrayBotones[5].getText().isEmpty()) {
         	
+        	haTerminado=false;
             if (turnoX) vista.botonera.arrayBotones[5].setText("X");
             else if (!turnoX) vista.botonera.arrayBotones[5].setText("O");
-            
+            if (esTerminado()) return;
             if (!cpu && turnoX) turnoX = false;
             else if (!cpu && !turnoX) turnoX = true;
             
-            if (cpu && !cpuPrimera) jugarCPU();
-            esTerminado();
+            if (cpu && !haTerminado) jugarCPU();
+            if (esTerminado()) return;
         }
          
-        else if(e.getSource().equals(vista.botonera.arrayBotones[6])) {
-        	if (cpu && cpuPrimera) jugarCPU();
+        else if(e.getSource().equals(vista.botonera.arrayBotones[6])&&vista.botonera.arrayBotones[6].getText().isEmpty()) {
         	
+        	haTerminado=false;
             if (turnoX) vista.botonera.arrayBotones[6].setText("X");
             else if (!turnoX) vista.botonera.arrayBotones[6].setText("O");
-            
+            if (esTerminado()) return;
             if (!cpu && turnoX) turnoX = false;
             else if (!cpu && !turnoX) turnoX = true;
             
-            if (cpu && !cpuPrimera) jugarCPU();
-            esTerminado();
+            if (cpu && !haTerminado) jugarCPU();
+            if (esTerminado()) return;
         }
          
-        else if(e.getSource().equals(vista.botonera.arrayBotones[7])) {
+        else if(e.getSource().equals(vista.botonera.arrayBotones[7])&&vista.botonera.arrayBotones[7].getText().isEmpty()) {
         	
-        	if (cpu && cpuPrimera) jugarCPU();
-        	
+        	haTerminado=false;
             if (turnoX) vista.botonera.arrayBotones[7].setText("X");
             else if (!turnoX) vista.botonera.arrayBotones[7].setText("O");
-            
+            if (esTerminado()) return;
             if (!cpu && turnoX) turnoX = false;
             else if (!cpu && !turnoX) turnoX = true;
             
-            if (cpu && !cpuPrimera) jugarCPU();
-            esTerminado();
+            if (cpu && !haTerminado) jugarCPU();
+            if (esTerminado()) return;
         }
         
-        else if(e.getSource().equals(vista.botonera.arrayBotones[8])) {
-        	if (cpu && cpuPrimera) jugarCPU();
+        else if(e.getSource().equals(vista.botonera.arrayBotones[8])&&vista.botonera.arrayBotones[8].getText().isEmpty()) {
         	
+        	haTerminado=false;
             if (turnoX) vista.botonera.arrayBotones[8].setText("X");
             else if (!turnoX) vista.botonera.arrayBotones[8].setText("O");
-            
+            if (esTerminado()) return;
             if (!cpu && turnoX) turnoX = false;
             else if (!cpu && !turnoX) turnoX = true;
             
-            if (cpu && !cpuPrimera) jugarCPU();
-            esTerminado();
+            if (cpu && !haTerminado) jugarCPU();
+            if (esTerminado()) return;
         }
     }
     
     public void jugarCPU() {
-        
+        if (cpuPrimera) {
+        	letraCPU = "X";
+        	letraHumano = "O";
+        }
+        else if (!cpuPrimera) {
+        	letraCPU = "O";
+        	letraHumano = "X";
+        }
+
+        if (cpu) {
+            if (haTerminado) return; // Si el juego ha terminado, no realizar más movimientos
+
+            if (vista.botonera.arrayBotones[4].getText().isEmpty()) {
+                // Ocupar la casilla central
+                vista.botonera.arrayBotones[4].setText(letraCPU);
+                esTerminado();
+                return;
+            } else if (!haTerminado){
+
+            int[] mejorMovimiento = minimax(2, letraCPU);
+            int mejorIndice = mejorMovimiento[1];
+
+            if (vista.botonera.arrayBotones[mejorIndice].getText().isEmpty()&&!haTerminado) {
+                vista.botonera.arrayBotones[mejorIndice].setText(letraCPU);
+                esTerminado();
+            	}
+            
+            }
+        }
     }
     
-    public void esTerminado() {
+    private int[] minimax(int profundidad, String jugador) {
+        int mejorPuntaje = (jugador.equals(letraCPU)) ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+        int mejorMovimiento = 4;
+
+        if (profundidad == 0 || esTerminado()) {
+            mejorPuntaje = evaluarTablero();
+        } else {
+            for (int i = 0; i < 9; i++) {
+                if (vista.botonera.arrayBotones[i].getText().isEmpty()&&!haTerminado) {
+                    vista.botonera.arrayBotones[i].setText(jugador);
+
+                    if (jugador.equals(letraCPU)) {
+                        int puntaje = minimax(profundidad - 1, letraHumano)[0];
+                        if (puntaje > mejorPuntaje) {
+                            mejorPuntaje = puntaje;
+                            mejorMovimiento = i;
+                        }
+                    } else {
+                        int puntaje = minimax(profundidad - 1, letraCPU)[0];
+                        if (puntaje < mejorPuntaje) {
+                            mejorPuntaje = puntaje;
+                            mejorMovimiento = i;
+                        }
+                    }
+
+                    vista.botonera.arrayBotones[i].setText("");
+                }
+            }
+        }
+
+        return new int[]{mejorPuntaje, mejorMovimiento};
+    }
+    
+    private int evaluarTablero() {
+        if (esGanador("X")) {
+            return -1;
+        } else if (esGanador("O")) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+    
+    public boolean esTerminado() {
     	
     	if (cpu) {
-    	if ((!cpuPrimera&&esGanador("X"))||(cpuPrimera&&esGanador("O"))) mostrarResultado("Ganador: Jugador");
-    	else if ((cpuPrimera&&esGanador("X"))||(!cpuPrimera&&esGanador("O"))) mostrarResultado("Ganador: CPU");
+    	if ((!cpuPrimera&&esGanador("X"))||(cpuPrimera&&esGanador("O"))) {
+    		mostrarResultado("Ganador: Jugador");
+    		haTerminado=true;
+    		return haTerminado;
+    	}
+    	else if ((cpuPrimera&&esGanador("X"))||(!cpuPrimera&&esGanador("O"))) {
+    		mostrarResultado("Ganador: CPU");
+    		haTerminado=true;
+    		return haTerminado;
+    	}
     	}
     	else if (!cpu) {
-    		if (esGanador("X")) mostrarResultado("Ganador: Jugador 1 (X)");
-    		else if (esGanador("O")) mostrarResultado("Ganador: Jugador 2 (O)");
+    		if (esGanador("X")) {
+    			mostrarResultado("Ganador: Jugador 1 (X)");
+    			haTerminado=true;
+        		return haTerminado;
+    		}
+    		else if (esGanador("O")) {
+    			mostrarResultado("Ganador: Jugador 2 (O)");
+    			haTerminado=true;
+        		return haTerminado;
+    		}
     	}
     	for (JButton boton : vista.botonera.arrayBotones) {
     		if (boton.getText().isEmpty()) {
@@ -221,7 +310,14 @@ public class Controlador implements ActionListener, MenuListener {
     			break;
     		} else casillaVacia=false;
     	}
-    	if (!esGanador("X")&&!esGanador("O")&&!casillaVacia) mostrarResultado("Empate");
+    	if (!esGanador("X")&&!esGanador("O")&&!casillaVacia) {
+    		mostrarResultado("Empate");
+    		haTerminado=true;
+    		return haTerminado;
+    	}
+    	
+    	haTerminado=false;
+		return haTerminado;
     	
     }
     
@@ -291,6 +387,7 @@ public class Controlador implements ActionListener, MenuListener {
     		boton.setEnabled(false);
     	}
     	turnoX=true;
+    	haTerminado=false;
     	opcionesNuevaPartida();
     }
     
@@ -319,6 +416,7 @@ public class Controlador implements ActionListener, MenuListener {
             	cpu=true;
             	cpuPrimera=false;
             	jugador2= false;
+            	turnoX=true;
             	for (JButton boton : vista.botonera.arrayBotones) {
             		boton.setText("");
             		boton.setEnabled(true);
@@ -328,10 +426,12 @@ public class Controlador implements ActionListener, MenuListener {
             	cpu=true;
             	cpuPrimera=true;
             	jugador2= false;
+            	turnoX=false;
             	for (JButton boton : vista.botonera.arrayBotones) {
             		boton.setText("");
             		boton.setEnabled(true);
             	}
+            	jugarCPU();
                 break;
             case 2:
             	cpu=false;
