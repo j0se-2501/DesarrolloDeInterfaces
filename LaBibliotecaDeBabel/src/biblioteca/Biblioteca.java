@@ -31,7 +31,7 @@ public class Biblioteca {
                     for (Anaquel anaquel : lado.getAnaqueles()) {
                         for (Libro libro : anaquel.getLibros()) {
                             if (libro.getId().equals(id)) {
-                                System.out.println(libro.getTitulo());
+                                System.out.println(libro.getId());
                                 System.out.println("\n" + libro.getTexto());
                                 return;
                             }
@@ -53,11 +53,10 @@ public class Biblioteca {
 	            for (LadoHexagono lado : hexagono.getLadosHexagono()) {
 	                for (Anaquel anaquel : lado.getAnaqueles()) {
 	                    for (Libro libro : anaquel.getLibros()) {
-	                        if (pattern.matcher(libro.getTexto()).find()) {
-	                            System.out.println(libro.getTitulo());
+	                        if (libro.getTexto().contains(palabra)) {
+	                            System.out.println(libro.getId()+" contiene: "+palabra);
 	                            System.out.println("\n" + libro.getTexto());
-	                            return;
-	                        }
+	                         }
 	                    }
 	                }
 	            }

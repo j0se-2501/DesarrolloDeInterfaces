@@ -7,7 +7,6 @@ public class Libro {
     private int numero;
     protected String id;
     private Anaquel anaquel;
-    private String titulo;
     private String texto;
     private char[] caracter = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ' ', ',', '.'};
 
@@ -17,16 +16,7 @@ public class Libro {
         this.numero = numero;
         this.id = anaquel.id + "-" + numero;
         this.anaquel = anaquel;
-        this.titulo = generarTituloAleatorio();
         this.texto = generarTextoAleatorio();
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
     }
 
     public String getTexto() {
@@ -51,10 +41,6 @@ public class Libro {
             }
         }
         return sb.toString();
-    }
-
-    public String generarTituloAleatorio() {
-        return generarStringAleatorio(28);
     }
 
     public String generarTextoAleatorio() {
